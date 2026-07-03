@@ -12,11 +12,10 @@
           <a class="btn btn-ghost" href="#cat">Xem bộ sưu tập →</a>
         </div>
       </div>
-      <div class="hero-visual">
+      <!-- <!-- <div class="hero-visual">
         <div class="hero-blob">
-          <div class="ph deep">
-            <div class="ph-tag">LOOK 01</div>
-          </div>
+          <img src="https://picsum.photos/400/500?random=1" alt="Product" class="prod-cover"
+            style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0; border-radius: 12px;">
         </div>
         <div class="hero-float-badge">
           <span class="pct">-30%</span>
@@ -29,7 +28,7 @@
             <div class="lbl">Khách hài lòng</div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="hero-marquee">
       <div class="hero-marquee-track">
@@ -41,40 +40,7 @@
     </div>
   </section>
 
-  <section class="section" id="cat">
-    <div class="wrap">
-      <div class="sec-head" style="justify-content:center;flex-direction:column;align-items:center;text-align:center;">
-        <div class="sec-eyebrow">Mua theo danh mục</div>
-        <h2 class="sec-title">Chọn phong cách của bạn</h2>
-      </div>
-      <div class="cat-grid">
-        <div class="cat-item">
-          <div class="cat-circle">👕</div>
-          <div class="cat-name">Áo thun</div>
-        </div>
-        <div class="cat-item">
-          <div class="cat-circle">🧥</div>
-          <div class="cat-name">Hoodie</div>
-        </div>
-        <div class="cat-item">
-          <div class="cat-circle">👖</div>
-          <div class="cat-name">Quần dài</div>
-        </div>
-        <div class="cat-item">
-          <div class="cat-circle">🧢</div>
-          <div class="cat-name">Phụ kiện</div>
-        </div>
-        <div class="cat-item">
-          <div class="cat-circle">👟</div>
-          <div class="cat-name">Giày dép</div>
-        </div>
-        <div class="cat-item">
-          <div class="cat-circle">🎒</div>
-          <div class="cat-name">Túi xách</div>
-        </div>
-      </div>
-    </div>
-  </section>
+
 
   <section class="section section-soft">
     <div class="wrap">
@@ -84,47 +50,23 @@
           <h2 class="sec-title">Trải nghiệm Rya's Store</h2>
         </div>
       </div>
-      <div class="promo-split">
-        <div class="promo-card">
-          <div class="ph deep">
-            <div class="ph-tag">DROP 01</div>
+      <div class="gender-split">
+        <a href="#" class="gender-card">
+          <img src="https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?auto=format&fit=crop&w=800&q=80"
+            alt="Thời trang Nam">
+          <div class="gender-card-content">
+            <h3>Thời trang Nam</h3>
+            <span class="gender-btn">Mua ngay</span>
           </div>
-          <div class="promo-card-content">
-            <span class="tag">Mới về</span>
-            <h3>Urban Layer</h3>
-            <p>Áo khoác &amp; hoodie phối lớp cho ngày se lạnh</p>
+        </a>
+        <a href="#" class="gender-card">
+          <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80"
+            alt="Thời trang Nữ">
+          <div class="gender-card-content">
+            <h3>Thời trang Nữ</h3>
+            <span class="gender-btn">Mua ngay</span>
           </div>
-        </div>
-        <div class="promo-card">
-          <div class="ph mid">
-            <div class="ph-tag">DROP 02</div>
-          </div>
-          <div class="promo-card-content">
-            <span class="tag">Bán chạy</span>
-            <h3>Core Basics</h3>
-            <p>Áo thun &amp; quần form chuẩn mọi dáng người</p>
-          </div>
-        </div>
-        <div class="promo-card">
-          <div class="ph">
-            <div class="ph-tag">DROP 03</div>
-          </div>
-          <div class="promo-card-content" style="color:var(--red);">
-            <span class="tag" style="background:var(--r10);color:var(--red);">Giới hạn</span>
-            <h3 style="color:var(--red);">Night Edit</h3>
-            <p style="opacity:0.75;">Phụ kiện tối giản, điểm nhấn tinh tế</p>
-          </div>
-        </div>
-        <div class="promo-card">
-          <div class="ph">
-            <div class="ph-tag">DROP 03</div>
-          </div>
-          <div class="promo-card-content" style="color:var(--red);">
-            <span class="tag" style="background:var(--r10);color:var(--red);">Giới hạn</span>
-            <h3 style="color:var(--red);">Night Edit</h3>
-            <p style="opacity:0.75;">Phụ kiện tối giản, điểm nhấn tinh tế</p>
-          </div>
-        </div>
+        </a>
       </div>
     </div>
   </section>
@@ -138,122 +80,619 @@
         </div>
         <a class="sec-link" href="#">Xem cửa hàng</a>
       </div>
-      <div class="prod-grid">
 
-        <div class="prod-card">
-          <div class="prod-img">
-            <span class="prod-badge">Mới</span>
-            <span class="prod-wish">♡</span>
-            <div class="ph">
-              <div class="ph-tag">RD-101</div>
+      <div class="carousel-wrap">
+        <button class="carousel-btn prev" @click="scrollCarousel('left')">&larr;</button>
+        <button class="carousel-btn next" @click="scrollCarousel('right')">&rarr;</button>
+
+        <div class="prod-carousel" ref="carouselRef">
+
+          <div class="prod-card">
+            <div class="prod-img">
+              <span class="prod-badge">Mới</span>
+              <span class="prod-wish">♡</span>
+              <img src="https://picsum.photos/400/500?random=2" alt="Product" class="prod-cover"
+                style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0; border-radius: 12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
             </div>
-            <div class="prod-quickadd">Thêm vào giỏ</div>
+            <div class="prod-cat">Áo thun</div>
+            <div class="prod-name">Áo thun Oversized Core</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2000'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2001'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2002'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+            </div>
+            <div class="prod-price">
+              <span class="now">414.000đ</span>
+              <span class="old">610.000đ</span>
+              <span class="discount">-32%</span>
+            </div>
           </div>
-          <div class="prod-cat">Áo thun</div>
-          <div class="prod-name">Áo thun Oversized Core</div>
-          <div class="prod-price"><span class="now">329.000đ</span></div>
+
+          <div class="prod-card">
+            <div class="prod-img">
+              <span class="prod-badge sale">-20%</span>
+              <span class="prod-wish">♡</span>
+              <img src="https://picsum.photos/400/500?random=3" alt="Product" class="prod-cover"
+                style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0; border-radius: 12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
+            </div>
+            <div class="prod-cat">Hoodie</div>
+            <div class="prod-name">Hoodie Zip Heavyweight</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2003'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2004'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2005'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+            </div>
+            <div class="prod-price">
+              <span class="now">346.000đ</span>
+              <span class="old">510.000đ</span>
+              <span class="discount">-32%</span>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-img">
+              <span class="prod-wish">♡</span>
+              <img src="https://picsum.photos/400/500?random=4" alt="Product" class="prod-cover"
+                style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0; border-radius: 12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
+            </div>
+            <div class="prod-cat">Quần dài</div>
+            <div class="prod-name">Quần Cargo Utility</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2006'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2007'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2008'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+            </div>
+            <div class="prod-price">
+              <span class="now">685.000đ</span>
+              <span class="old">890.000đ</span>
+              <span class="discount">-23%</span>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-img">
+              <span class="prod-badge">Mới</span>
+              <span class="prod-wish">♡</span>
+              <img src="https://picsum.photos/400/500?random=5" alt="Product" class="prod-cover"
+                style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0; border-radius: 12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
+            </div>
+            <div class="prod-cat">Áo khoác</div>
+            <div class="prod-name">Jacket Varsity Coach</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2009'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2010'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2011'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+            </div>
+            <div class="prod-price">
+              <span class="now">329.000đ</span>
+              <span class="old">470.000đ</span>
+              <span class="discount">-30%</span>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-img">
+              <span class="prod-wish">♡</span>
+              <img src="https://picsum.photos/400/500?random=6" alt="Product" class="prod-cover"
+                style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0; border-radius: 12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
+            </div>
+            <div class="prod-cat">Áo thun</div>
+            <div class="prod-name">Áo thun Graphic Tee</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2012'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2013'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2014'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+            </div>
+            <div class="prod-price">
+              <span class="now">416.000đ</span>
+              <span class="old">730.000đ</span>
+              <span class="discount">-43%</span>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-img">
+              <span class="prod-badge sale">-15%</span>
+              <span class="prod-wish">♡</span>
+              <img src="https://picsum.photos/400/500?random=7" alt="Product" class="prod-cover"
+                style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0; border-radius: 12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
+            </div>
+            <div class="prod-cat">Hoodie</div>
+            <div class="prod-name">Sweater Cổ Tròn Basic</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2015'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2016'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2017'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+            </div>
+            <div class="prod-price">
+              <span class="now">542.000đ</span>
+              <span class="old">810.000đ</span>
+              <span class="discount">-33%</span>
+            </div>
+          </div>
+
+          <div class="prod-card">
+            <div class="prod-img">
+              <span class="prod-wish">♡</span>
+              <img src="https://picsum.photos/400/500?random=8" alt="Product" class="prod-cover"
+                style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0; border-radius: 12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
+            </div>
+            <div class="prod-cat">Quần dài</div>
+            <div class="prod-name">Quần Jogger Tapered</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2018'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2019'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2020'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+            </div>
+            <div class="prod-price">
+              <span class="now">420.000đ</span>
+              <span class="old">610.000đ</span>
+              <span class="discount">-31%</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Best Seller -->
+  <section class="section" id="best-seller">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="sec-eyebrow">Được yêu thích nhất</div>
+          <h2 class="sec-title">Best Seller</h2>
+        </div>
+        <a class="sec-link" href="#">Xem tất cả</a>
+      </div>
+      <div class="bestseller-layout">
+
+        <!-- Sản phẩm nổi bật (to bên trái) -->
+        <div class="bestseller-featured">
+          <div class="prod-card">
+            <div class="prod-img">
+              <span class="prod-badge sale">TOP 1</span>
+              <span class="prod-wish">♡</span>
+              <img src="https://picsum.photos/400/500?random=9" alt="Product" class="prod-cover"
+                style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0; border-radius: 12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
+            </div>
+            <div class="prod-cat">Quần đùi</div>
+            <div class="prod-name">Quần Short Caro Trẻ Trung Bản Cao Cấp</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2021'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2022'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2023'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+            </div>
+            <div class="prod-price">
+              <span class="now">584.000đ</span>
+              <span class="old">730.000đ</span>
+              <span class="discount">-20%</span>
+            </div>
+          </div>
         </div>
 
-        <div class="prod-card">
-          <div class="prod-img">
-            <span class="prod-badge sale">-20%</span>
-            <span class="prod-wish">♡</span>
-            <div class="ph mid">
-              <div class="ph-tag">RD-204</div>
+        <!-- 4 Sản phẩm nhỏ (bên phải) -->
+        <div class="bestseller-grid">
+          <div class="prod-card">
+            <div class="prod-img">
+              <span class="prod-wish">♡</span>
+              <img src="https://picsum.photos/400/500?random=10" alt="Product" class="prod-cover"
+                style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0; border-radius: 12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
             </div>
-            <div class="prod-quickadd">Thêm vào giỏ</div>
+            <div class="prod-cat">Sơ mi</div>
+            <div class="prod-name">Sơ mi tay ngắn Cuban</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2024'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2025'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2026'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+            </div>
+            <div class="prod-price">
+              <span class="now">428.000đ</span>
+              <span class="old">670.000đ</span>
+              <span class="discount">-36%</span>
+            </div>
           </div>
-          <div class="prod-cat">Hoodie</div>
-          <div class="prod-name">Hoodie Zip Heavyweight</div>
-          <div class="prod-price"><span class="now">559.000đ</span><span class="old">699.000đ</span></div>
-        </div>
 
-        <div class="prod-card">
-          <div class="prod-img">
-            <span class="prod-wish">♡</span>
-            <div class="ph">
-              <div class="ph-tag">RD-318</div>
+          <div class="prod-card">
+            <div class="prod-img">
+              <span class="prod-wish">♡</span>
+              <img src="https://picsum.photos/400/500?random=11" alt="Product" class="prod-cover"
+                style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0; border-radius: 12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
             </div>
-            <div class="prod-quickadd">Thêm vào giỏ</div>
+            <div class="prod-cat">Phụ kiện</div>
+            <div class="prod-name">Túi Tote Canvas Basic</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2027'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2028'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2029'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+            </div>
+            <div class="prod-price">
+              <span class="now">415.000đ</span>
+              <span class="old">620.000đ</span>
+              <span class="discount">-33%</span>
+            </div>
           </div>
-          <div class="prod-cat">Quần dài</div>
-          <div class="prod-name">Quần Cargo Utility</div>
-          <div class="prod-price"><span class="now">449.000đ</span></div>
-        </div>
 
-        <div class="prod-card">
-          <div class="prod-img">
-            <span class="prod-badge">Mới</span>
-            <span class="prod-wish">♡</span>
-            <div class="ph deep">
-              <div class="ph-tag">RD-422</div>
+          <div class="prod-card">
+            <div class="prod-img">
+              <span class="prod-badge">Mới</span>
+              <span class="prod-wish">♡</span>
+              <img src="https://picsum.photos/400/500?random=12" alt="Product" class="prod-cover"
+                style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0; border-radius: 12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
             </div>
-            <div class="prod-quickadd">Thêm vào giỏ</div>
+            <div class="prod-cat">Phụ kiện</div>
+            <div class="prod-name">Mũ Lưỡi Trai Logo Rya</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2030'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2031'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2032'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+            </div>
+            <div class="prod-price">
+              <span class="now">496.000đ</span>
+              <span class="old">690.000đ</span>
+              <span class="discount">-28%</span>
+            </div>
           </div>
-          <div class="prod-cat">Áo khoác</div>
-          <div class="prod-name">Jacket Varsity Coach</div>
-          <div class="prod-price"><span class="now">789.000đ</span></div>
-        </div>
 
-        <div class="prod-card">
-          <div class="prod-img">
-            <span class="prod-wish">♡</span>
-            <div class="ph">
-              <div class="ph-tag">RD-119</div>
+          <div class="prod-card">
+            <div class="prod-img">
+              <span class="prod-badge sale">-10%</span>
+              <span class="prod-wish">♡</span>
+              <img src="https://picsum.photos/400/500?random=13" alt="Product" class="prod-cover"
+                style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0; border-radius: 12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
             </div>
-            <div class="prod-quickadd">Thêm vào giỏ</div>
-          </div>
-          <div class="prod-cat">Áo thun</div>
-          <div class="prod-name">Áo thun Graphic Tee</div>
-          <div class="prod-price"><span class="now">259.000đ</span></div>
-        </div>
-
-        <div class="prod-card">
-          <div class="prod-img">
-            <span class="prod-badge sale">-15%</span>
-            <span class="prod-wish">♡</span>
-            <div class="ph mid">
-              <div class="ph-tag">RD-227</div>
+            <div class="prod-cat">Áo thun</div>
+            <div class="prod-name">Áo Polo Classic Trơn</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2033'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2034'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2035'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
             </div>
-            <div class="prod-quickadd">Thêm vào giỏ</div>
-          </div>
-          <div class="prod-cat">Hoodie</div>
-          <div class="prod-name">Sweater Cổ Tròn Basic</div>
-          <div class="prod-price"><span class="now">399.000đ</span><span class="old">469.000đ</span></div>
-        </div>
-
-        <div class="prod-card">
-          <div class="prod-img">
-            <span class="prod-wish">♡</span>
-            <div class="ph">
-              <div class="ph-tag">RD-330</div>
+            <div class="prod-price">
+              <span class="now">294.000đ</span>
+              <span class="old">490.000đ</span>
+              <span class="discount">-40%</span>
             </div>
-            <div class="prod-quickadd">Thêm vào giỏ</div>
           </div>
-          <div class="prod-cat">Quần dài</div>
-          <div class="prod-name">Quần Jogger Tapered</div>
-          <div class="prod-price"><span class="now">379.000đ</span></div>
-        </div>
-
-        <div class="prod-card">
-          <div class="prod-img">
-            <span class="prod-badge">Mới</span>
-            <span class="prod-wish">♡</span>
-            <div class="ph deep">
-              <div class="ph-tag">RD-441</div>
-            </div>
-            <div class="prod-quickadd">Thêm vào giỏ</div>
-          </div>
-          <div class="prod-cat">Áo khoác</div>
-          <div class="prod-name">Áo khoác Bomber Denim</div>
-          <div class="prod-price"><span class="now">699.000đ</span></div>
         </div>
 
       </div>
     </div>
   </section>
 
-  <section class="section section-soft">
+  <!-- Banner Break -->
+  <section class="banner-break">
+    <div class="banner-break-content">
+      <h2>Khám phá bản sắc riêng</h2>
+      <p>Rya's Store mang đến những thiết kế thời trang táo bạo, giúp bạn tự tin thể hiện cá tính trong mọi khoảnh khắc.
+        Không chỉ là trang phục, đó là tuyên ngôn phong cách của chính bạn.</p>
+      <a href="#" class="btn-light">Xem bộ sưu tập</a>
+    </div>
+  </section>
+  <section class="section" id="new">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="sec-eyebrow">Bộ sưu tập</div>
+          <h2 class="sec-title">Thời trang mùa hè</h2>
+        </div><a class="sec-link" href="#">Xem cửa hàng</a>
+      </div>
+      <div class="carousel-wrap"><button class="carousel-btn prev">←</button><button
+          class="carousel-btn next">→</button>
+        <div class="prod-carousel">
+          <div class="prod-card">
+            <div class="prod-img"><span class="prod-badge">Mới</span><span class="prod-wish">♡</span><img
+                src="https://picsum.photos/400/500?random=2" alt="Product" class="prod-cover"
+                style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
+            </div>
+            <div class="prod-cat">Áo thun</div>
+            <div class="prod-name">Áo thun Oversized Core</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2036'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2037'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2038'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+            </div>
+            <div class="prod-price">
+              <span class="now">466.000đ</span>
+              <span class="old">590.000đ</span>
+              <span class="discount">-21%</span>
+            </div>
+          </div>
+          <div class="prod-card">
+            <div class="prod-img"><span class="prod-badge sale">-20%</span><span class="prod-wish">♡</span><img
+                src="https://picsum.photos/400/500?random=3" alt="Product" class="prod-cover"
+                style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
+            </div>
+            <div class="prod-cat">Hoodie</div>
+            <div class="prod-name">Hoodie Zip Heavyweight</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2039'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2040'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2041'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+            </div>
+            <div class="prod-price">
+              <span class="now">248.000đ</span>
+              <span class="old">460.000đ</span>
+              <span class="discount">-46%</span>
+            </div>
+          </div>
+          <div class="prod-card">
+            <div class="prod-img"><span class="prod-wish">♡</span><img src="https://picsum.photos/400/500?random=4"
+                alt="Product" class="prod-cover"
+                style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
+            </div>
+            <div class="prod-cat">Quần dài</div>
+            <div class="prod-name">Quần Cargo Utility</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2042'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2043'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2044'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+            </div>
+            <div class="prod-price">
+              <span class="now">328.000đ</span>
+              <span class="old">530.000đ</span>
+              <span class="discount">-38%</span>
+            </div>
+          </div>
+          <div class="prod-card">
+            <div class="prod-img"><span class="prod-badge">Mới</span><span class="prod-wish">♡</span><img
+                src="https://picsum.photos/400/500?random=5" alt="Product" class="prod-cover"
+                style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
+            </div>
+            <div class="prod-cat">Áo khoác</div>
+            <div class="prod-name">Jacket Varsity Coach</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2045'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2046'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2047'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+            </div>
+            <div class="prod-price">
+              <span class="now">330.000đ</span>
+              <span class="old">560.000đ</span>
+              <span class="discount">-41%</span>
+            </div>
+          </div>
+          <div class="prod-card">
+            <div class="prod-img"><span class="prod-wish">♡</span><img src="https://picsum.photos/400/500?random=6"
+                alt="Product" class="prod-cover"
+                style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
+            </div>
+            <div class="prod-cat">Áo thun</div>
+            <div class="prod-name">Áo thun Graphic Tee</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2048'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2049'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2050'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+            </div>
+            <div class="prod-price">
+              <span class="now">316.000đ</span>
+              <span class="old">400.000đ</span>
+              <span class="discount">-21%</span>
+            </div>
+          </div>
+          <div class="prod-card">
+            <div class="prod-img"><span class="prod-badge sale">-15%</span><span class="prod-wish">♡</span><img
+                src="https://picsum.photos/400/500?random=7" alt="Product" class="prod-cover"
+                style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
+            </div>
+            <div class="prod-cat">Hoodie</div>
+            <div class="prod-name">Sweater Cổ Tròn Basic</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2051'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2052'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2053'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+            </div>
+            <div class="prod-price">
+              <span class="now">475.000đ</span>
+              <span class="old">610.000đ</span>
+              <span class="discount">-22%</span>
+            </div>
+          </div>
+          <div class="prod-card">
+            <div class="prod-img"><span class="prod-wish">♡</span><img src="https://picsum.photos/400/500?random=8"
+                alt="Product" class="prod-cover"
+                style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
+            </div>
+            <div class="prod-cat">Quần dài</div>
+            <div class="prod-name">Quần Jogger Tapered</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2054'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2055'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2056'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+            </div>
+            <div class="prod-price">
+              <span class="now">504.000đ</span>
+              <span class="old">840.000đ</span>
+              <span class="discount">-40%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Sportswear Lookbook (Split Layout) -->
+  <section class="lookbook-wrap">
+    <div class="lookbook-img" style="background-image: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1000&q=80')"></div>
+    <div class="lookbook-text">
+      <div class="lb-eyebrow">Sport Collection</div>
+      <h2>Năng động<br>& Bứt phá</h2>
+      <p>Trang phục thể thao với chất liệu co giãn 4 chiều, thấm hút mồ hôi vượt trội, giúp bạn thoải mái vận động và
+        chinh phục mọi giới hạn.</p>
+      <a href="#" class="lookbook-btn">Mua đồ thể thao</a>
+    </div>
+  </section>
+  <section class="section" id="new">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="sec-eyebrow">Bộ sưu tập</div>
+          <h2 class="sec-title">Đồ thể thao</h2>
+        </div><a class="sec-link" href="#">Xem cửa hàng</a>
+      </div>
+      <div class="carousel-wrap"><button class="carousel-btn prev">←</button><button
+          class="carousel-btn next">→</button>
+        <div class="prod-carousel">
+          <div class="prod-card">
+            <div class="prod-img"><span class="prod-badge">Mới</span><span class="prod-wish">♡</span><img
+                src="https://picsum.photos/400/500?random=2" alt="Product" class="prod-cover"
+                style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
+            </div>
+            <div class="prod-cat">Áo thun</div>
+            <div class="prod-name">Áo thun Oversized Core</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2057'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2058'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2059'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+            </div>
+            <div class="prod-price">
+              <span class="now">291.000đ</span>
+              <span class="old">530.000đ</span>
+              <span class="discount">-45%</span>
+            </div>
+          </div>
+          <div class="prod-card">
+            <div class="prod-img"><span class="prod-badge sale">-20%</span><span class="prod-wish">♡</span><img
+                src="https://picsum.photos/400/500?random=3" alt="Product" class="prod-cover"
+                style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
+            </div>
+            <div class="prod-cat">Hoodie</div>
+            <div class="prod-name">Hoodie Zip Heavyweight</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2060'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2061'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2062'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+            </div>
+            <div class="prod-price">
+              <span class="now">329.000đ</span>
+              <span class="old">470.000đ</span>
+              <span class="discount">-30%</span>
+            </div>
+          </div>
+          <div class="prod-card">
+            <div class="prod-img"><span class="prod-wish">♡</span><img src="https://picsum.photos/400/500?random=4"
+                alt="Product" class="prod-cover"
+                style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
+            </div>
+            <div class="prod-cat">Quần dài</div>
+            <div class="prod-name">Quần Cargo Utility</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2063'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2064'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2065'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+            </div>
+            <div class="prod-price">
+              <span class="now">336.000đ</span>
+              <span class="old">560.000đ</span>
+              <span class="discount">-40%</span>
+            </div>
+          </div>
+          <div class="prod-card">
+            <div class="prod-img"><span class="prod-badge">Mới</span><span class="prod-wish">♡</span><img
+                src="https://picsum.photos/400/500?random=5" alt="Product" class="prod-cover"
+                style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
+            </div>
+            <div class="prod-cat">Áo khoác</div>
+            <div class="prod-name">Jacket Varsity Coach</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2066'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2067'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2068'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+            </div>
+            <div class="prod-price">
+              <span class="now">439.000đ</span>
+              <span class="old">830.000đ</span>
+              <span class="discount">-47%</span>
+            </div>
+          </div>
+          <div class="prod-card">
+            <div class="prod-img"><span class="prod-wish">♡</span><img src="https://picsum.photos/400/500?random=6"
+                alt="Product" class="prod-cover"
+                style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
+            </div>
+            <div class="prod-cat">Áo thun</div>
+            <div class="prod-name">Áo thun Graphic Tee</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2069'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2070'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2071'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+            </div>
+            <div class="prod-price">
+              <span class="now">342.000đ</span>
+              <span class="old">570.000đ</span>
+              <span class="discount">-40%</span>
+            </div>
+          </div>
+          <div class="prod-card">
+            <div class="prod-img"><span class="prod-badge sale">-15%</span><span class="prod-wish">♡</span><img
+                src="https://picsum.photos/400/500?random=7" alt="Product" class="prod-cover"
+                style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
+            </div>
+            <div class="prod-cat">Hoodie</div>
+            <div class="prod-name">Sweater Cổ Tròn Basic</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2072'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2073'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2074'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+            </div>
+            <div class="prod-price">
+              <span class="now">495.000đ</span>
+              <span class="old">750.000đ</span>
+              <span class="discount">-34%</span>
+            </div>
+          </div>
+          <div class="prod-card">
+            <div class="prod-img"><span class="prod-wish">♡</span><img src="https://picsum.photos/400/500?random=8"
+                alt="Product" class="prod-cover"
+                style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:12px;">
+              <div class="prod-quickadd">Thêm vào giỏ</div>
+            </div>
+            <div class="prod-cat">Quần dài</div>
+            <div class="prod-name">Quần Jogger Tapered</div>
+            <div class="prod-sizes">
+              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2075'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2076'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
+              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2077'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+            </div>
+            <div class="prod-price">
+              <span class="now">402.000đ</span>
+              <span class="old">600.000đ</span>
+              <span class="discount">-33%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section">
     <div class="wrap">
       <h2 class="sec-title center" style="margin-bottom:48px;">Khách hàng nói gì về Rya's Store</h2>
       <div class="review-grid">
@@ -299,9 +738,8 @@
   <section class="about-section">
     <div class="about-grid">
       <div class="about-img">
-        <div class="ph">
-          <div class="ph-tag">STORE</div>
-        </div>
+        <img src="https://picsum.photos/400/500?random=14" alt="Product" class="prod-cover"
+          style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0; border-radius: 12px;">
       </div>
       <div class="about-text">
         <h2>VỀ Rya's Store</h2>

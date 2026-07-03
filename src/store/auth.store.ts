@@ -60,7 +60,6 @@ export const useAuthStore = defineStore('auth', {
     async logout() {
       try {
         await authService.logout();
-
       } catch (error) {
         console.error('Lỗi khi đăng xuất:', error);
       } finally {

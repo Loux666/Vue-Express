@@ -23,7 +23,11 @@ export default defineComponent({
           email: email.value,
           password: password.value
         });
-        router.push('/');
+        if (authStore.user?.role === 'ADMIN') {
+          router.push('/admin/cms');
+        } else {
+          router.push('/');
+        }
       } catch (error: any) {
         // If backend returned 403 (e.g., OTP required), redirect to OTP page
         if (error.response?.status === 403) {

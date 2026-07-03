@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import MainLayout from '@/layouts/MainLayout.vue';
+import AdminLayout from '@/layouts/AdminLayout.vue';
 import { useAuthStore } from '@/store/auth.store';
 
 // Import Layouts
@@ -37,9 +38,15 @@ const router = createRouter({
       path: '/otp',
       name: 'otp',
       component: () => import('@/pages/otp/index.vue'),
-    }
-
+    },
     
+    // --- ADMIN ROUTES ---
+    {
+      path: '/admin/cms',
+      name: 'admin-cms',
+      component: () => import('@/pages/admin/cms/index.vue'),
+      meta: { requiresAdmin: true, layout: AdminLayout }
+    }
   ]
 });
 
@@ -48,9 +55,16 @@ export default router;
 router.beforeEach((to, _from, next) => {
   const authStore = useAuthStore();
   
-  // Ví dụ: Trang '/admin' hoặc '/create-prompt' cần đăng nhập
-  // Ông có thể thêm meta: { requiresAuth: true } vào các route đó
-  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
+  if (to.meta.requiresAdmin) {
+    if (!authStore.isAuthenticated) {
+      next('/login');
+    } else if (authStore.user?.role !== 'ADMIN') {
+      alert('Bạn không có quyền truy cập trang này!');
+      next('/'); // Not admin, redirect to home
+    } else {
+      next(); // Is admin
+    }
+  } else if (to.meta.requiresAuth && !authStore.isAuthenticated) {
     next('/login'); // Chưa đăng nhập mà đòi vào -> Đá về Login
   } else {
     next(); // Ok cho qua

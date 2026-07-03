@@ -1,6 +1,6 @@
 import { defineComponent, ref, onMounted, onUnmounted, computed } from 'vue';
 import { useRouter } from 'vue-router'; // 1. Import
-import { useAuthStore } from '@/store/auth';
+import { useAuthStore } from '@/store/auth.store';
 import { getAvatarUrl } from '@/utils/media';
 // import api, { headerApi } from '@/services/api';
 

@@ -148,8 +148,13 @@ export default defineComponent({
           // After registration verification, send user to login
           router.push('/login');
         } else {
-          // After login verification, go to home
-          router.push('/');
+          // After login verification, check role
+          const authStore = (await import('@/store/auth.store')).useAuthStore();
+          if (authStore.user?.role === 'ADMIN') {
+            router.push('/admin/cms');
+          } else {
+            router.push('/');
+          }
         }
       } catch (err: any) {
         console.error('OTP verify error', err);
