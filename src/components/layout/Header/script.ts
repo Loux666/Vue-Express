@@ -4,36 +4,7 @@ import { useAuthStore } from '@/store/auth';
 import { getAvatarUrl } from '@/utils/media';
 // import api, { headerApi } from '@/services/api';
 
-interface ChildCategory {
-  id: number;
-  name: string;
-  slug: string;
-}
 
-interface ParentCategory {
-  id: number;
-  name: string;
-  slug: string;
-  children: ChildCategory[];
-}
-
-interface Audience {
-  id: number;
-  name: string;
-  label: string;
-  categories: ParentCategory[];
-}
-
-interface Collection {
-  id: number;
-  name: string;
-  slug: string;
-}
-
-interface HeaderData {
-  collections: Collection[];
-  audiences: Audience[];
-}
 
 export default defineComponent({
   emits: ['toggle-sidebar'],
@@ -41,9 +12,7 @@ export default defineComponent({
     // 2. Khởi tạo router instance (QUAN TRỌNG)
     const router = useRouter();
 
-    // Header data from API
-    const collections = ref<Collection[]>([]);
-    const audiences = ref<Audience[]>([]);
+
 
     // Logic scroll giữ nguyên
     const isScrolled = ref(false);
@@ -102,28 +71,9 @@ export default defineComponent({
     };
 
     // Product menu toggle
-    const showProductMenu = ref(false);
-    const toggleProductMenu = () => {
-      showProductMenu.value = !showProductMenu.value;
-    };
 
-    const handleDocumentClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (!target.closest('.user-menu')) showDropdown.value = false;
-      if (!target.closest('.product-submenu') && !target.closest('.nav-link')) {
-        showProductMenu.value = false;
-      }
-    };
 
-    onMounted(() => {
-      window.addEventListener('scroll', handleScroll);
-      document.addEventListener('click', handleDocumentClick);
-      // fetchHeaderData();
-    });
-    onUnmounted(() => {
-      window.removeEventListener('scroll', handleScroll);
-      document.removeEventListener('click', handleDocumentClick);
-    });
+
 
     return {
       isScrolled,
@@ -136,14 +86,9 @@ export default defineComponent({
       avatarUrl,
       goToProfile,
       logout,
-      // product menu
-      showProductMenu,
-      toggleProductMenu,
       // expose auth status
       isAuthenticated: computed(() => authStore.isAuthenticated),
-      // header data
-      collections,
-      audiences,
+
     };
   }
 });

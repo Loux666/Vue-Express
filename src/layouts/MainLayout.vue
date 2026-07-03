@@ -35,7 +35,6 @@
 
   .main-content {
     flex: 1;
-    margin-top: 49px;
   }
 
   @media (max-width: 768px) {

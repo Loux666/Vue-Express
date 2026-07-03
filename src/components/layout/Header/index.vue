@@ -1,4 +1,4 @@
-<template src="./template.html"></template>
+<template src="./header.html"></template>
 
 <script lang="ts" src="./script.ts"></script>
 
