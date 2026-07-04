@@ -147,6 +147,160 @@
   background: var(--r6);
 }
 
+.nav-link.active {
+  background: var(--r6);
+}
+
+/* ===== Mega Menu ===== */
+.mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #eee;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  z-index: 100;
+  overflow: hidden;
+}
+
+.mega-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+.mega-content {
+  display: flex;
+  gap: 40px;
+}
+
+.mega-cols {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+}
+
+.mega-col h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mega-col a {
+  display: block;
+  font-size: 13px;
+  color: #555;
+  text-decoration: none;
+  margin-bottom: 12px;
+  transition: color 0.2s;
+}
+
+.mega-col a:hover {
+  color: var(--primary-red);
+}
+
+.mega-col a.highlight {
+  color: #0044cc;
+  font-weight: 600;
+}
+
+.mega-col .sub-text {
+  font-size: 12px;
+  color: #888;
+  font-style: italic;
+  display: block;
+  margin-top: -8px;
+}
+
+.mega-banners {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mega-banner {
+  height: 140px;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.mega-banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+}
+
+.banner-text {
+  position: absolute;
+  bottom: 12px;
+  left: 16px;
+  color: #fff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  letter-spacing: 0.05em;
+  z-index: 2;
+}
+
+.mega-footer {
+  background: #f4f4f4;
+  padding: 16px 32px;
+  border-top: 1px solid #eaeaea;
+}
+
+.mega-footer-content {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.footer-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+}
+
+.mega-footer-content a {
+  font-size: 13px;
+  font-weight: 700;
+  color: #111;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.mega-footer-content a:hover {
+  color: var(--primary-red);
+}
+
+/* Dropdown transition */
+.dropdown-enter-active,
+.dropdown-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-enter-from,
+.dropdown-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
 /* --- Right / Icons Section --- */
 .header-right {
   display: flex;

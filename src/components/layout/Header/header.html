@@ -17,12 +17,20 @@
       </div>
 
       <!-- Nav links -->
-      <nav class="nav-links">
-        <a href="#" class="nav-link">Áo</a>
-        <a href="#" class="nav-link">Quần</a>
-        <a href="#" class="nav-link">Outerwear</a>
-        <a href="#" class="nav-link">Phụ kiện</a>
-        <a href="#" class="nav-link">Sale</a>
+      <nav class="nav-links" @click.stop>
+        <div class="nav-item">
+          <a href="#" class="nav-link" @click.prevent="toggleNavDropdown('nam')" :class="{ 'active': activeNavDropdown === 'nam' }">NAM</a>
+        </div>
+        <div class="nav-item">
+          <a href="#" class="nav-link" @click.prevent="toggleNavDropdown('nu')" :class="{ 'active': activeNavDropdown === 'nu' }">NỮ</a>
+        </div>
+        <div class="nav-item">
+          <a href="#" class="nav-link" @click.prevent="toggleNavDropdown('the_thao')" :class="{ 'active': activeNavDropdown === 'the_thao' }">THỂ THAO</a>
+        </div>
+        <div class="nav-item">
+          <a href="#" class="nav-link" @click.prevent="toggleNavDropdown('phu_kien')" :class="{ 'active': activeNavDropdown === 'phu_kien' }">PHỤ KIỆN</a>
+        </div>
+        <a href="#" class="nav-link" style="color: #e74c3c; font-weight: 700;">-50% SALE</a>
       </nav>
 
       <!-- Icons + Auth -->
@@ -81,5 +89,288 @@
         </template>
       </div>
     </div>
+  
+    <!-- Mega Menu -->
+    <transition name="dropdown">
+      <div class="mega-menu" v-show="activeNavDropdown === 'nam'" @click.stop>
+        <div class="mega-container">
+          <div class="mega-content">
+            <div class="mega-cols">
+              <div class="mega-col">
+                <h4>TẤT CẢ SẢN PHẨM &rarr;</h4>
+                <a href="#" class="highlight">Sản phẩm mới</a>
+                <a href="#">Bán chạy nhất</a>
+                <a href="#">Khám phá Bộ sưu tập</a>
+                <a href="#">Rya Set</a>
+              </div>
+              <div class="mega-col">
+                <h4>ÁO NAM &rarr;</h4>
+                <a href="#">Tất cả</a>
+                <a href="#">Áo Tanktop</a>
+                <a href="#">Áo thun</a>
+                <a href="#">Áo Thể thao</a>
+                <a href="#">Áo Polo</a>
+                <a href="#">Áo Sơ Mi</a>
+                <a href="#">Áo Dài Tay</a>
+                <a href="#">Áo Sweater</a>
+                <a href="#">Áo Khoác</a>
+              </div>
+              <div class="mega-col">
+                <h4>QUẦN NAM &rarr;</h4>
+                <a href="#">Tất cả</a>
+                <a href="#">Quần Short</a>
+                <a href="#">Quần Jogger</a>
+                <a href="#">Quần Thể thao</a>
+                <a href="#">Quần Dài</a>
+                <a href="#">Quần Jeans</a>
+                <a href="#">Quần Kaki</a>
+              </div>
+              <div class="mega-col">
+                <h4>QUẦN LÓT NAM &rarr;</h4>
+                <a href="#">Tất cả</a>
+                <a href="#">Brief (Tam giác)</a>
+                <a href="#">Trunk (Boxer)</a>
+                <a href="#">Boxer Brief</a>
+              </div>
+              <div class="mega-col">
+                <h4>PHỤ KIỆN &rarr;</h4>
+                <a href="#">Tất cả phụ kiện</a>
+                <span class="sub-text">(Tất, mũ, túi...)</span>
+              </div>
+            </div>
+            
+            <div class="mega-banners">
+              <div class="mega-banner" style="background-image: url('https://images.unsplash.com/photo-1511886929837-354d827aae26?auto=format&fit=crop&w=500&q=80')">
+                <div class="banner-text">MÙA HÈ SÔI ĐỘNG</div>
+              </div>
+              <div class="mega-banner" style="background-image: url('https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=500&q=80')">
+                <div class="banner-text">BỘ SƯU TẬP MỚI</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mega-footer">
+          <div class="mega-footer-content">
+            <span class="footer-label">THEO NHU CẦU</span>
+            <a href="#">ĐỒ LÓT</a>
+            <a href="#">ĐỒ THỂ THAO</a>
+            <a href="#">MẶC HÀNG NGÀY</a>
+            <a href="#">ĐỒ BƠI</a>
+            <a href="#">CHỐNG NẮNG</a>
+          </div>
+        </div>
+      </div>
+    </transition>
+<transition name="dropdown">
+      <div class="mega-menu" v-show="activeNavDropdown === 'nu'" @click.stop>
+        <div class="mega-container">
+          <div class="mega-content">
+            <div class="mega-cols">
+              <div class="mega-col">
+                <h4>TẤT CẢ SẢN PHẨM &rarr;</h4>
+                <a href="#" class="highlight">Sản phẩm mới</a>
+                <a href="#">Bán chạy nhất</a>
+                <a href="#">Khám phá Bộ sưu tập</a>
+                <a href="#">Rya Set</a>
+              </div>
+              <div class="mega-col">
+                <h4>ÁO NỮ &rarr;</h4>
+                <a href="#">Tất cả</a>
+                <a href="#">Áo Tanktop</a>
+                <a href="#">Áo thun</a>
+                <a href="#">Áo Thể thao</a>
+                <a href="#">Áo Polo</a>
+                <a href="#">Áo Sơ Mi</a>
+                <a href="#">Áo Dài Tay</a>
+                <a href="#">Áo Sweater</a>
+                <a href="#">Áo Khoác</a>
+              </div>
+              <div class="mega-col">
+                <h4>QUẦN NỮ &rarr;</h4>
+                <a href="#">Tất cả</a>
+                <a href="#">Quần Short</a>
+                <a href="#">Quần Jogger</a>
+                <a href="#">Quần Thể thao</a>
+                <a href="#">Quần Dài</a>
+                <a href="#">Quần Jeans</a>
+                <a href="#">Quần Kaki</a>
+              </div>
+              <div class="mega-col">
+                <h4>QUẦN LÓT NỮ &rarr;</h4>
+                <a href="#">Tất cả</a>
+                <a href="#">Brief (Tam giác)</a>
+                <a href="#">Trunk (Boxer)</a>
+                <a href="#">Boxer Brief</a>
+              </div>
+              <div class="mega-col">
+                <h4>PHỤ KIỆN &rarr;</h4>
+                <a href="#">Tất cả phụ kiện</a>
+                <span class="sub-text">(Tất, mũ, túi...)</span>
+              </div>
+            </div>
+            
+            <div class="mega-banners">
+              <div class="mega-banner" style="background-image: url('https://images.unsplash.com/photo-1511886929837-354d827aae26?auto=format&fit=crop&w=500&q=80')">
+                <div class="banner-text">MÙA HÈ SÔI ĐỘNG</div>
+              </div>
+              <div class="mega-banner" style="background-image: url('https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=500&q=80')">
+                <div class="banner-text">BỘ SƯU TẬP MỚI</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mega-footer">
+          <div class="mega-footer-content">
+            <span class="footer-label">THEO NHU CẦU</span>
+            <a href="#">ĐỒ LÓT</a>
+            <a href="#">ĐỒ THỂ THAO</a>
+            <a href="#">MẶC HÀNG NGÀY</a>
+            <a href="#">ĐỒ BƠI</a>
+            <a href="#">CHỐNG NẮNG</a>
+          </div>
+        </div>
+      </div>
+    </transition>
+<transition name="dropdown">
+      <div class="mega-menu" v-show="activeNavDropdown === 'the_thao'" @click.stop>
+        <div class="mega-container">
+          <div class="mega-content">
+            <div class="mega-cols">
+              <div class="mega-col">
+                <h4>ĐỒ THỂ THAO &rarr;</h4>
+                <a href="#" class="highlight">Sản phẩm mới</a>
+                <a href="#">Bán chạy nhất</a>
+                <a href="#">Khám phá Bộ sưu tập</a>
+                <a href="#">Rya Set</a>
+              </div>
+              <div class="mega-col">
+                <h4>ÁO THỂ THAO &rarr;</h4>
+                <a href="#">Tất cả</a>
+                <a href="#">Áo Tanktop</a>
+                <a href="#">Áo thun</a>
+                <a href="#">Áo Thể thao</a>
+                <a href="#">Áo Polo</a>
+                <a href="#">Áo Sơ Mi</a>
+                <a href="#">Áo Dài Tay</a>
+                <a href="#">Áo Sweater</a>
+                <a href="#">Áo Khoác</a>
+              </div>
+              <div class="mega-col">
+                <h4>QUẦN THỂ THAO &rarr;</h4>
+                <a href="#">Tất cả</a>
+                <a href="#">Quần Short</a>
+                <a href="#">Quần Jogger</a>
+                <a href="#">Quần Thể thao</a>
+                <a href="#">Quần Dài</a>
+                <a href="#">Quần Jeans</a>
+                <a href="#">Quần Kaki</a>
+              </div>
+              <div class="mega-col">
+                <h4>GIÀY DÉP THỂ THAO &rarr;</h4>
+                <a href="#">Tất cả</a>
+                <a href="#">Brief (Tam giác)</a>
+                <a href="#">Trunk (Boxer)</a>
+                <a href="#">Boxer Brief</a>
+              </div>
+              <div class="mega-col">
+                <h4>GIÀY DÉP &rarr;</h4>
+                <a href="#">Tất cả phụ kiện</a>
+                <span class="sub-text">(Tất, mũ, túi...)</span>
+              </div>
+            </div>
+            
+            <div class="mega-banners">
+              <div class="mega-banner" style="background-image: url('https://images.unsplash.com/photo-1511886929837-354d827aae26?auto=format&fit=crop&w=500&q=80')">
+                <div class="banner-text">MÙA HÈ SÔI ĐỘNG</div>
+              </div>
+              <div class="mega-banner" style="background-image: url('https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=500&q=80')">
+                <div class="banner-text">BỘ SƯU TẬP MỚI</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mega-footer">
+          <div class="mega-footer-content">
+            <span class="footer-label">THEO NHU CẦU</span>
+            <a href="#">ĐỒ LÓT</a>
+            <a href="#">ĐỒ THỂ THAO</a>
+            <a href="#">MẶC HÀNG NGÀY</a>
+            <a href="#">ĐỒ BƠI</a>
+            <a href="#">CHỐNG NẮNG</a>
+          </div>
+        </div>
+      </div>
+    </transition>
+<transition name="dropdown">
+      <div class="mega-menu" v-show="activeNavDropdown === 'phu_kien'" @click.stop>
+        <div class="mega-container">
+          <div class="mega-content">
+            <div class="mega-cols">
+              <div class="mega-col">
+                <h4>TRANG SỨC HOT &rarr;</h4>
+                <a href="#" class="highlight">Sản phẩm mới</a>
+                <a href="#">Bán chạy nhất</a>
+                <a href="#">Khám phá Bộ sưu tập</a>
+                <a href="#">Rya Set</a>
+              </div>
+              <div class="mega-col">
+                <h4>MŨ / NÓN &rarr;</h4>
+                <a href="#">Tất cả</a>
+                <a href="#">Áo Tanktop</a>
+                <a href="#">Áo thun</a>
+                <a href="#">Áo Thể thao</a>
+                <a href="#">Áo Polo</a>
+                <a href="#">Áo Sơ Mi</a>
+                <a href="#">Áo Dài Tay</a>
+                <a href="#">Áo Sweater</a>
+                <a href="#">Áo Khoác</a>
+              </div>
+              <div class="mega-col">
+                <h4>TÚI XÁCH / BALO &rarr;</h4>
+                <a href="#">Tất cả</a>
+                <a href="#">Quần Short</a>
+                <a href="#">Quần Jogger</a>
+                <a href="#">Quần Thể thao</a>
+                <a href="#">Quần Dài</a>
+                <a href="#">Quần Jeans</a>
+                <a href="#">Quần Kaki</a>
+              </div>
+              <div class="mega-col">
+                <h4>THẮT LƯNG / VÍ &rarr;</h4>
+                <a href="#">Tất cả</a>
+                <a href="#">Brief (Tam giác)</a>
+                <a href="#">Trunk (Boxer)</a>
+                <a href="#">Boxer Brief</a>
+              </div>
+              <div class="mega-col">
+                <h4>TRANG SỨC &rarr;</h4>
+                <a href="#">Tất cả phụ kiện</a>
+                <span class="sub-text">(Tất, mũ, túi...)</span>
+              </div>
+            </div>
+            
+            <div class="mega-banners">
+              <div class="mega-banner" style="background-image: url('https://images.unsplash.com/photo-1511886929837-354d827aae26?auto=format&fit=crop&w=500&q=80')">
+                <div class="banner-text">MÙA HÈ SÔI ĐỘNG</div>
+              </div>
+              <div class="mega-banner" style="background-image: url('https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=500&q=80')">
+                <div class="banner-text">BỘ SƯU TẬP MỚI</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mega-footer">
+          <div class="mega-footer-content">
+            <span class="footer-label">THEO NHU CẦU</span>
+            <a href="#">ĐỒ LÓT</a>
+            <a href="#">ĐỒ THỂ THAO</a>
+            <a href="#">MẶC HÀNG NGÀY</a>
+            <a href="#">ĐỒ BƠI</a>
+            <a href="#">CHỐNG NẮNG</a>
+          </div>
+        </div>
+      </div>
+    </transition>
+
   </header>
 </div>

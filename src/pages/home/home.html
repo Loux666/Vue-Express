@@ -98,9 +98,9 @@
             <div class="prod-cat">Áo thun</div>
             <div class="prod-name">Áo thun Oversized Core</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2000'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2001'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2002'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2000')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2001')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2002')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">414.000đ</span>
@@ -120,9 +120,9 @@
             <div class="prod-cat">Hoodie</div>
             <div class="prod-name">Hoodie Zip Heavyweight</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2003'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2004'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2005'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2003')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2004')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2005')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">346.000đ</span>
@@ -141,9 +141,9 @@
             <div class="prod-cat">Quần dài</div>
             <div class="prod-name">Quần Cargo Utility</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2006'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2007'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2008'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2006')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2007')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2008')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">685.000đ</span>
@@ -163,9 +163,9 @@
             <div class="prod-cat">Áo khoác</div>
             <div class="prod-name">Jacket Varsity Coach</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2009'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2010'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2011'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2009')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2010')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2011')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">329.000đ</span>
@@ -184,9 +184,9 @@
             <div class="prod-cat">Áo thun</div>
             <div class="prod-name">Áo thun Graphic Tee</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2012'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2013'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2014'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2012')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2013')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2014')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">416.000đ</span>
@@ -206,9 +206,9 @@
             <div class="prod-cat">Hoodie</div>
             <div class="prod-name">Sweater Cổ Tròn Basic</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2015'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2016'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2017'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2015')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2016')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2017')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">542.000đ</span>
@@ -227,9 +227,9 @@
             <div class="prod-cat">Quần dài</div>
             <div class="prod-name">Quần Jogger Tapered</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2018'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2019'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2020'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2018')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2019')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2020')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">420.000đ</span>
@@ -268,9 +268,9 @@
             <div class="prod-cat">Quần đùi</div>
             <div class="prod-name">Quần Short Caro Trẻ Trung Bản Cao Cấp</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2021'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2022'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2023'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2021')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2022')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2023')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">584.000đ</span>
@@ -292,9 +292,9 @@
             <div class="prod-cat">Sơ mi</div>
             <div class="prod-name">Sơ mi tay ngắn Cuban</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2024'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2025'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2026'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2024')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2025')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2026')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">428.000đ</span>
@@ -313,9 +313,9 @@
             <div class="prod-cat">Phụ kiện</div>
             <div class="prod-name">Túi Tote Canvas Basic</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2027'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2028'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2029'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2027')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2028')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2029')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">415.000đ</span>
@@ -335,9 +335,9 @@
             <div class="prod-cat">Phụ kiện</div>
             <div class="prod-name">Mũ Lưỡi Trai Logo Rya</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2030'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2031'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2032'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2030')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2031')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2032')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">496.000đ</span>
@@ -357,9 +357,9 @@
             <div class="prod-cat">Áo thun</div>
             <div class="prod-name">Áo Polo Classic Trơn</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2033'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2034'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2035'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2033')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2034')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2035')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">294.000đ</span>
@@ -402,9 +402,9 @@
             <div class="prod-cat">Áo thun</div>
             <div class="prod-name">Áo thun Oversized Core</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2036'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2037'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2038'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2036')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2037')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2038')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">466.000đ</span>
@@ -421,9 +421,9 @@
             <div class="prod-cat">Hoodie</div>
             <div class="prod-name">Hoodie Zip Heavyweight</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2039'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2040'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2041'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2039')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2040')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2041')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">248.000đ</span>
@@ -440,9 +440,9 @@
             <div class="prod-cat">Quần dài</div>
             <div class="prod-name">Quần Cargo Utility</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2042'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2043'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2044'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2042')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2043')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2044')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">328.000đ</span>
@@ -459,9 +459,9 @@
             <div class="prod-cat">Áo khoác</div>
             <div class="prod-name">Jacket Varsity Coach</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2045'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2046'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2047'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2045')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2046')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2047')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">330.000đ</span>
@@ -478,9 +478,9 @@
             <div class="prod-cat">Áo thun</div>
             <div class="prod-name">Áo thun Graphic Tee</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2048'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2049'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2050'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2048')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2049')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2050')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">316.000đ</span>
@@ -497,9 +497,9 @@
             <div class="prod-cat">Hoodie</div>
             <div class="prod-name">Sweater Cổ Tròn Basic</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2051'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2052'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2053'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2051')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2052')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2053')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">475.000đ</span>
@@ -516,9 +516,9 @@
             <div class="prod-cat">Quần dài</div>
             <div class="prod-name">Quần Jogger Tapered</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2054'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2055'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2056'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2054')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2055')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2056')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">504.000đ</span>
@@ -562,9 +562,9 @@
             <div class="prod-cat">Áo thun</div>
             <div class="prod-name">Áo thun Oversized Core</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2057'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2058'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2059'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2057')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2058')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2059')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">291.000đ</span>
@@ -581,9 +581,9 @@
             <div class="prod-cat">Hoodie</div>
             <div class="prod-name">Hoodie Zip Heavyweight</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2060'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2061'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2062'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2060')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2061')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2062')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">329.000đ</span>
@@ -600,9 +600,9 @@
             <div class="prod-cat">Quần dài</div>
             <div class="prod-name">Quần Cargo Utility</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2063'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2064'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2065'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2063')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2064')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2065')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">336.000đ</span>
@@ -619,9 +619,9 @@
             <div class="prod-cat">Áo khoác</div>
             <div class="prod-name">Jacket Varsity Coach</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2066'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2067'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2068'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2066')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2067')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2068')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">439.000đ</span>
@@ -638,9 +638,9 @@
             <div class="prod-cat">Áo thun</div>
             <div class="prod-name">Áo thun Graphic Tee</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2069'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2070'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2071'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2069')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2070')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2071')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">342.000đ</span>
@@ -657,9 +657,9 @@
             <div class="prod-cat">Hoodie</div>
             <div class="prod-name">Sweater Cổ Tròn Basic</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2072'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2073'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2074'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2072')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2073')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2074')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">495.000đ</span>
@@ -676,9 +676,9 @@
             <div class="prod-cat">Quần dài</div>
             <div class="prod-name">Quần Jogger Tapered</div>
             <div class="prod-sizes">
-              <span class="size-btn active" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2075'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">S</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2076'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">M</span>
-              <span class="size-btn" onclick="this.closest('.prod-card').querySelector('.prod-cover').src='https://picsum.photos/400/500?random=2077'; this.parentElement.querySelectorAll('.size-btn').forEach(el=>el.classList.remove('active')); this.classList.add('active');">L</span>
+              <span class="size-btn active" @click="selectSize($event, 'https://picsum.photos/400/500?random=2075')">S</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2076')">M</span>
+              <span class="size-btn" @click="selectSize($event, 'https://picsum.photos/400/500?random=2077')">L</span>
             </div>
             <div class="prod-price">
               <span class="now">402.000đ</span>

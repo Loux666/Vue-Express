@@ -37,9 +37,11 @@ export default defineComponent({
 
     onMounted(() => {
       window.addEventListener('scroll', handleScroll);
+      document.addEventListener('click', closeAllDropdowns);
     });
     onUnmounted(() => {
       window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('click', closeAllDropdowns);
     });
 
     const goToLogin = () => {
@@ -71,11 +73,19 @@ export default defineComponent({
     };
 
     // Product menu toggle
+    const activeNavDropdown = ref('');
+    const toggleNavDropdown = (menu: string) => {
+      if (activeNavDropdown.value === menu) {
+        activeNavDropdown.value = '';
+      } else {
+        activeNavDropdown.value = menu;
+      }
+    };
 
-
-
-
-    return {
+    const closeAllDropdowns = () => {
+      showDropdown.value = false;
+      activeNavDropdown.value = '';
+    };    return {
       isScrolled,
       goToLogin,
       goToRegister,
@@ -88,7 +98,8 @@ export default defineComponent({
       logout,
       // expose auth status
       isAuthenticated: computed(() => authStore.isAuthenticated),
-
+      activeNavDropdown,
+      toggleNavDropdown,
     };
   }
 });
