@@ -61,6 +61,7 @@ export default defineComponent({
     });
 
     const avatarUrl = computed(() => getAvatarUrl(authStore.user?.avatar, 40));
+    const hasAvatar = computed(() => !!authStore.user?.avatar);
 
     const goToProfile = () => {
       showDropdown.value = false;
@@ -94,6 +95,7 @@ export default defineComponent({
       toggleDropdown,
       userName,
       avatarUrl,
+      hasAvatar,
       goToProfile,
       logout,
       // expose auth status

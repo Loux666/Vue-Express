@@ -18,66 +18,119 @@
           <textarea v-model="settings.hero.title" rows="3" placeholder="BÙNG<br>DÁNG<br>PHỐ."></textarea>
         </div>
         <div class="form-group">
-          <label>Phụ đề</label>
-          <input type="text" v-model="settings.hero.subtitle" placeholder="Streetwear cắt may chuẩn form..." />
+          <label>Phụ đề (Mô tả)</label>
+          <textarea v-model="settings.hero.subtitle" rows="2" placeholder="Tự do bứt phá với bộ sưu tập..."></textarea>
         </div>
         <div class="form-group">
-          <label>Ảnh nền (URL)</label>
-          <input type="text" v-model="settings.hero.imageUrl" placeholder="Nhập URL ảnh đã upload..." />
-          <small class="hint">Upload ảnh tại form phía dưới và dán URL vào đây.</small>
+          <label>Dòng chữ chạy (Marquee)</label>
+          <input type="text" v-model="settings.hero.marqueeText" placeholder="SIÊU SALE RA MẮT - GIẢM ĐẾN 50%..." />
+        </div>
+        <div class="form-group">
+          <label>Ảnh nền</label>
+          <div class="image-uploader">
+            <img v-if="settings.hero.imageUrl" :src="settings.hero.imageUrl" class="preview-img" />
+            <div class="upload-controls">
+              <input type="file" @change="uploadDirectImage($event, 'hero')" accept="image/*" />
+              <span v-if="uploadingState.hero" class="uploading-text">Đang tải ảnh...</span>
+            </div>
+            <input type="text" v-model="settings.hero.imageUrl" placeholder="Hoặc dán URL ảnh trực tiếp vào đây..." class="url-fallback" />
+          </div>
         </div>
         <div class="form-row">
           <div class="form-group">
+            <label>Nội dung Nút Chính</label>
+            <input type="text" v-model="settings.hero.primaryBtnText" placeholder="KHOÁC LÊN MÌNH, TỰ TIN TỎA SÁNG" />
+          </div>
+          <div class="form-group">
             <label>Link Nút Chính</label>
-            <input type="text" v-model="settings.hero.primaryLink" placeholder="#new" />
+            <input type="text" v-model="settings.hero.primaryBtnLink" placeholder="#new" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nội dung Nút Phụ</label>
+            <input type="text" v-model="settings.hero.secondaryBtnText" placeholder="TÌM HIỂU THÊM" />
           </div>
           <div class="form-group">
             <label>Link Nút Phụ</label>
-            <input type="text" v-model="settings.hero.secondaryLink" placeholder="#cat" />
+            <input type="text" v-model="settings.hero.secondaryBtnLink" placeholder="#cat" />
           </div>
         </div>
       </section>
 
-      <!-- 2. Promo Cards (4 Cards) -->
+      <!-- 2. Lookbook Section -->
       <section class="card">
-        <h4>2. Promo Split (4 Thẻ)</h4>
-        <div class="promo-grid">
-          <div v-for="(card, index) in settings.promoCards" :key="index" class="promo-item">
-            <h5>Thẻ {{ index + 1 }}</h5>
-            <div class="form-group">
-              <label>Tag (Badge)</label>
-              <input type="text" v-model="card.tag" placeholder="VD: Mới về" />
+        <h4>2. Lookbook (Sportswear)</h4>
+        <div class="form-group">
+          <label>Eyebrow (Chữ nhỏ phía trên)</label>
+          <input type="text" v-model="settings.lookbook.eyebrow" placeholder="Rya's Sport" />
+        </div>
+        <div class="form-group">
+          <label>Tiêu đề</label>
+          <input type="text" v-model="settings.lookbook.title" placeholder="ĐỘT PHÁ MỌI GIỚI HẠN" />
+        </div>
+        <div class="form-group">
+          <label>Mô tả</label>
+          <textarea v-model="settings.lookbook.description" rows="3" placeholder="Chất liệu thun lạnh cao cấp..."></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nội dung Nút</label>
+            <input type="text" v-model="settings.lookbook.btnText" placeholder="KHÁM PHÁ NGAY" />
+          </div>
+          <div class="form-group">
+            <label>Link Nút</label>
+            <input type="text" v-model="settings.lookbook.btnLink" placeholder="#" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Ảnh Lookbook (Hiệu ứng Parallax)</label>
+          <div class="image-uploader">
+            <img v-if="settings.lookbook.imageUrl" :src="settings.lookbook.imageUrl" class="preview-img" />
+            <div class="upload-controls">
+              <input type="file" @change="uploadDirectImage($event, 'lookbook')" accept="image/*" />
+              <span v-if="uploadingState.lookbook" class="uploading-text">Đang tải ảnh...</span>
             </div>
-            <div class="form-group">
-              <label>Tiêu đề</label>
-              <input type="text" v-model="card.title" placeholder="VD: Urban Layer" />
-            </div>
-            <div class="form-group">
-              <label>Mô tả</label>
-              <input type="text" v-model="card.description" />
-            </div>
-            <div class="form-group">
-              <label>Ảnh (URL)</label>
-              <input type="text" v-model="card.imageUrl" />
-            </div>
+            <input type="text" v-model="settings.lookbook.imageUrl" placeholder="Hoặc dán URL ảnh trực tiếp..." class="url-fallback" />
           </div>
         </div>
       </section>
 
-      <!-- Upload Helper -->
-      <section class="card upload-section">
-        <h4>Công cụ Upload Ảnh Nhanh (Backend)</h4>
-        <div class="upload-wrapper">
-          <input type="file" @change="handleFileUpload" accept="image/*" />
-          <button @click="uploadImage" class="btn-upload" :disabled="!selectedFile || isUploading">
-            {{ isUploading ? 'Đang tải lên...' : 'Tải lên & Lấy URL' }}
-          </button>
+      <!-- 3. Banner Break Section -->
+      <section class="card">
+        <h4>3. Banner Break</h4>
+        <div class="form-group">
+          <label>Tiêu đề</label>
+          <input type="text" v-model="settings.bannerBreak.title" placeholder="Khám phá bản sắc riêng" />
         </div>
-        <div v-if="uploadedUrl" class="uploaded-result">
-          <p>URL Ảnh:</p>
-          <input type="text" :value="uploadedUrl" readonly @click="($event.target as HTMLInputElement).select()" />
+        <div class="form-group">
+          <label>Mô tả</label>
+          <textarea v-model="settings.bannerBreak.description" rows="2" placeholder="Rya's Store mang đến những thiết kế..."></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nội dung Nút</label>
+            <input type="text" v-model="settings.bannerBreak.btnText" placeholder="XEM TẤT CẢ SẢN PHẨM" />
+          </div>
+          <div class="form-group">
+            <label>Link Nút</label>
+            <input type="text" v-model="settings.bannerBreak.btnLink" placeholder="/products" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Ảnh nền</label>
+          <div class="image-uploader">
+            <img v-if="settings.bannerBreak.imageUrl" :src="settings.bannerBreak.imageUrl" class="preview-img" />
+            <div class="upload-controls">
+              <input type="file" @change="uploadDirectImage($event, 'bannerBreak')" accept="image/*" />
+              <span v-if="uploadingState.bannerBreak" class="uploading-text">Đang tải ảnh...</span>
+            </div>
+            <input type="text" v-model="settings.bannerBreak.imageUrl" placeholder="Hoặc dán URL ảnh trực tiếp..." class="url-fallback" />
+          </div>
         </div>
       </section>
+
+
 
     </div>
   </div>
@@ -96,22 +149,36 @@ const settings = ref({
   hero: {
     title: '',
     subtitle: '',
+    marqueeText: '',
     imageUrl: '',
-    primaryLink: '',
-    secondaryLink: ''
+    primaryBtnText: '',
+    primaryBtnLink: '',
+    secondaryBtnText: '',
+    secondaryBtnLink: ''
   },
-  promoCards: [
-    { tag: '', title: '', description: '', imageUrl: '' },
-    { tag: '', title: '', description: '', imageUrl: '' },
-    { tag: '', title: '', description: '', imageUrl: '' },
-    { tag: '', title: '', description: '', imageUrl: '' }
-  ]
+  lookbook: {
+    eyebrow: '',
+    title: '',
+    description: '',
+    btnText: '',
+    btnLink: '',
+    imageUrl: ''
+  },
+  bannerBreak: {
+    title: '',
+    description: '',
+    btnText: '',
+    btnLink: '',
+    imageUrl: ''
+  }
 });
 
 // Upload helper state
-const selectedFile = ref<File | null>(null);
-const isUploading = ref(false);
-const uploadedUrl = ref('');
+const uploadingState = ref({
+  hero: false,
+  lookbook: false,
+  bannerBreak: false
+});
 
 const fetchSettings = async () => {
   try {
@@ -144,18 +211,15 @@ const saveSettings = async () => {
   }
 };
 
-const handleFileUpload = (e: Event) => {
+const uploadDirectImage = async (e: Event, section: 'hero' | 'lookbook' | 'bannerBreak') => {
   const target = e.target as HTMLInputElement;
-  if (target.files && target.files.length > 0) {
-    selectedFile.value = target.files[0] || null;
-  }
-};
-
-const uploadImage = async () => {
-  if (!selectedFile.value) return;
-  isUploading.value = true;
+  if (!target.files || target.files.length === 0) return;
+  const file = target.files[0];
+  if (!file) return;
+  
+  uploadingState.value[section] = true;
   const formData = new FormData();
-  formData.append('files', selectedFile.value as any);
+  formData.append('files', file);
 
   try {
     const res = await axios.post('http://localhost:3000/api/upload', formData, {
@@ -166,7 +230,7 @@ const uploadImage = async () => {
     });
     // Giả sử backend trả về data.urls (mảng) hoặc tương tự
     if (res.data && res.data.urls && res.data.urls.length > 0) {
-      uploadedUrl.value = res.data.urls[0];
+      settings.value[section].imageUrl = res.data.urls[0];
     } else {
       alert('Upload thành công nhưng không tìm thấy URL trả về.');
     }
@@ -174,7 +238,8 @@ const uploadImage = async () => {
     console.error('Upload failed', error);
     alert('Lỗi khi tải ảnh lên.');
   } finally {
-    isUploading.value = false;
+    uploadingState.value[section] = false;
+    target.value = ''; // Reset input
   }
 };
 
@@ -284,36 +349,40 @@ input[type="text"], textarea {
   color: #7A0E16;
 }
 
-.upload-section {
-  background: #fcf8f8;
+.image-uploader {
+  border: 1px dashed #ccc;
+  padding: 16px;
+  border-radius: 8px;
+  background: #f9f9f9;
 }
 
-.upload-wrapper {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-}
-
-.btn-upload {
-  background: #333;
-  color: #fff;
-  border: none;
-  padding: 10px 16px;
+.preview-img {
+  max-width: 100%;
+  max-height: 200px;
   border-radius: 6px;
-  cursor: pointer;
+  margin-bottom: 12px;
+  object-fit: cover;
+}
+
+.upload-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.uploading-text {
+  font-size: 13px;
+  color: #7A0E16;
   font-weight: 600;
 }
 
-.btn-upload:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-}
-
-.uploaded-result {
-  margin-top: 16px;
-}
-
-.uploaded-result input {
+.url-fallback {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
   background: #fff;
 }
 </style>

@@ -5,7 +5,7 @@
   </div>
 
   <!-- Header chính -->
-  <header class="header" :class="{ 'scrolled': isScrolled }">
+  <header class="header" :class="{ 'scrolled': isScrolled }" @mouseleave="activeNavDropdown = null">
     <div class="nav">
 
       <!-- Logo -->
@@ -18,17 +18,17 @@
 
       <!-- Nav links -->
       <nav class="nav-links" @click.stop>
-        <div class="nav-item">
-          <a href="#" class="nav-link" @click.prevent="toggleNavDropdown('nam')" :class="{ 'active': activeNavDropdown === 'nam' }">NAM</a>
+        <div class="nav-item" @mouseenter="activeNavDropdown = 'nam'">
+          <a href="#" class="nav-link" @click.prevent :class="{ 'active': activeNavDropdown === 'nam' }">NAM</a>
         </div>
-        <div class="nav-item">
-          <a href="#" class="nav-link" @click.prevent="toggleNavDropdown('nu')" :class="{ 'active': activeNavDropdown === 'nu' }">NỮ</a>
+        <div class="nav-item" @mouseenter="activeNavDropdown = 'nu'">
+          <a href="#" class="nav-link" @click.prevent :class="{ 'active': activeNavDropdown === 'nu' }">NỮ</a>
         </div>
-        <div class="nav-item">
-          <a href="#" class="nav-link" @click.prevent="toggleNavDropdown('the_thao')" :class="{ 'active': activeNavDropdown === 'the_thao' }">THỂ THAO</a>
+        <div class="nav-item" @mouseenter="activeNavDropdown = 'the_thao'">
+          <a href="#" class="nav-link" @click.prevent :class="{ 'active': activeNavDropdown === 'the_thao' }">THỂ THAO</a>
         </div>
-        <div class="nav-item">
-          <a href="#" class="nav-link" @click.prevent="toggleNavDropdown('phu_kien')" :class="{ 'active': activeNavDropdown === 'phu_kien' }">PHỤ KIỆN</a>
+        <div class="nav-item" @mouseenter="activeNavDropdown = 'phu_kien'">
+          <a href="#" class="nav-link" @click.prevent :class="{ 'active': activeNavDropdown === 'phu_kien' }">PHỤ KIỆN</a>
         </div>
         <a href="#" class="nav-link" style="color: #e74c3c; font-weight: 700;">-50% SALE</a>
       </nav>
@@ -58,7 +58,13 @@
         <template v-else>
           <div class="user-menu" @click.stop>
             <div class="user-info" @click="toggleDropdown">
-              <img :src="avatarUrl" alt="avatar" class="user-avatar" />
+              <img v-if="hasAvatar" :src="avatarUrl" alt="avatar" class="user-avatar" />
+              <div v-else class="user-avatar user-avatar-placeholder">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              </div>
               <span class="user-greeting">{{ userName }}</span>
               <svg class="chevron-down" :class="{ 'rotate': showDropdown }" width="16" height="16" viewBox="0 0 16 16"
                 fill="currentColor">
@@ -140,10 +146,10 @@
             </div>
             
             <div class="mega-banners">
-              <div class="mega-banner" style="background-image: url('https://images.unsplash.com/photo-1511886929837-354d827aae26?auto=format&fit=crop&w=500&q=80')">
+              <div class="mega-banner" style="background-image: url('/src/assets/product/men-clothes.webp')">
                 <div class="banner-text">MÙA HÈ SÔI ĐỘNG</div>
               </div>
-              <div class="mega-banner" style="background-image: url('https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=500&q=80')">
+              <div class="mega-banner" style="background-image: url('/src/assets/product/men-clothes.webp')">
                 <div class="banner-text">BỘ SƯU TẬP MỚI</div>
               </div>
             </div>
@@ -210,10 +216,10 @@
             </div>
             
             <div class="mega-banners">
-              <div class="mega-banner" style="background-image: url('https://images.unsplash.com/photo-1511886929837-354d827aae26?auto=format&fit=crop&w=500&q=80')">
+              <div class="mega-banner" style="background-image: url('/src/assets/product/women-clothes.jpg')">
                 <div class="banner-text">MÙA HÈ SÔI ĐỘNG</div>
               </div>
-              <div class="mega-banner" style="background-image: url('https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=500&q=80')">
+              <div class="mega-banner" style="background-image: url('/src/assets/product/women-clothes.jpg')">
                 <div class="banner-text">BỘ SƯU TẬP MỚI</div>
               </div>
             </div>
