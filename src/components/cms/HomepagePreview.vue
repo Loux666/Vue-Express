@@ -7,8 +7,8 @@
           :key="index"
           class="hero-bg"
           :class="{ active: currentHeroIndex === index }"
-          :style="{ backgroundImage: `url(${img})` }"
-        />
+          :style="{ backgroundImage: 'url(' + img + ')' }"
+        ></div>
         <div class="hero-grid">
           <div>
             <div class="hero-eyebrow">Bộ sưu tập SS26</div>
@@ -63,24 +63,29 @@
               <h2 class="sec-title">Drop mới nhất</h2>
             </div>
           </div>
-          <div class="prod-carousel preview-prod-row">
-            <div v-for="n in settings.products.displayCount" :key="`new-${n}`" class="prod-card preview-prod-card">
-              <div class="prod-img">
-                <span class="prod-badge">Mới</span>
-                <img :src="getDemoImage(n)" alt="Product" class="prod-cover" />
-                <div class="prod-quickadd">Thêm vào giỏ</div>
-              </div>
-              <div class="prod-cat">Áo thun</div>
-              <div class="prod-name">Sản phẩm Demo {{ n }}</div>
-              <div class="prod-sizes">
-                <span class="size-btn active">S</span>
-                <span class="size-btn">M</span>
-                <span class="size-btn">L</span>
-              </div>
-              <div class="prod-price">
-                <span class="now">450.000đ</span>
-                <span class="old">610.000đ</span>
-                <span class="discount">-20%</span>
+          <div class="carousel-wrap">
+            <button class="carousel-btn prev" @click="scrollCarousel(newArrivalsRef, 'left')">&larr;</button>
+            <button class="carousel-btn next" @click="scrollCarousel(newArrivalsRef, 'right')">&rarr;</button>
+
+            <div class="prod-carousel" ref="newArrivalsRef">
+              <div v-for="n in settings.products.displayCount" :key="'new-' + n" class="prod-card">
+                <div class="prod-img">
+                  <span class="prod-badge">Mới</span>
+                  <img :src="getDemoImage(n)" alt="Product" class="prod-cover" />
+                  <div class="prod-quickadd">Thêm vào giỏ</div>
+                </div>
+                <div class="prod-cat">Áo thun</div>
+                <div class="prod-name">Sản phẩm Demo {{ n }}</div>
+                <div class="prod-sizes">
+                  <span class="size-btn active">S</span>
+                  <span class="size-btn">M</span>
+                  <span class="size-btn">L</span>
+                </div>
+                <div class="prod-price">
+                  <span class="now">450.000đ</span>
+                  <span class="old">610.000đ</span>
+                  <span class="discount">-20%</span>
+                </div>
               </div>
             </div>
           </div>
@@ -95,24 +100,29 @@
               <h2 class="sec-title">Best Seller</h2>
             </div>
           </div>
-          <div class="prod-carousel preview-prod-row">
-            <div v-for="n in Math.min(settings.products.displayCount, 6)" :key="`best-${n}`" class="prod-card preview-prod-card">
-              <div class="prod-img">
-                <span class="prod-badge sale">-20%</span>
-                <img :src="getDemoImage(n + 1)" alt="Product" class="prod-cover" />
-                <div class="prod-quickadd">Thêm vào giỏ</div>
-              </div>
-              <div class="prod-cat">Áo khoác</div>
-              <div class="prod-name">Best Seller {{ n }}</div>
-              <div class="prod-sizes">
-                <span class="size-btn active">S</span>
-                <span class="size-btn">M</span>
-                <span class="size-btn">L</span>
-              </div>
-              <div class="prod-price">
-                <span class="now">520.000đ</span>
-                <span class="old">680.000đ</span>
-                <span class="discount">-24%</span>
+            <div class="carousel-wrap">
+            <button class="carousel-btn prev" @click="scrollCarousel(bestSellerRef, 'left')">&larr;</button>
+            <button class="carousel-btn next" @click="scrollCarousel(bestSellerRef, 'right')">&rarr;</button>
+
+            <div class="prod-carousel" ref="bestSellerRef">
+              <div v-for="n in Math.min(settings.products.displayCount, 6)" :key="'best-' + n" class="prod-card">
+                <div class="prod-img">
+                  <span class="prod-badge sale">-20%</span>
+                  <img :src="getDemoImage(n + 1)" alt="Product" class="prod-cover" />
+                  <div class="prod-quickadd">Thêm vào giỏ</div>
+                </div>
+                <div class="prod-cat">Áo khoác</div>
+                <div class="prod-name">Best Seller {{ n }}</div>
+                <div class="prod-sizes">
+                  <span class="size-btn active">S</span>
+                  <span class="size-btn">M</span>
+                  <span class="size-btn">L</span>
+                </div>
+                <div class="prod-price">
+                  <span class="now">520.000đ</span>
+                  <span class="old">680.000đ</span>
+                  <span class="discount">-24%</span>
+                </div>
               </div>
             </div>
           </div>
@@ -121,11 +131,11 @@
 
       <section id="preview-bannerBreak" class="section section-soft">
         <div class="wrap">
-          <div class="banner-preview" :style="{ backgroundImage: `url(${settings.bannerBreak.bgImage})` }">
-            <div class="banner-preview-content">
+          <div class="banner-break" :style="{ backgroundImage: 'url(' + settings.bannerBreak.bgImage + ')' }">
+            <div class="banner-break-content">
               <h2>{{ settings.bannerBreak.heading }}</h2>
               <p>{{ settings.bannerBreak.text }}</p>
-              <span class="banner-preview-btn">{{ settings.bannerBreak.btnLabel }}</span>
+              <a class="btn-light" href="#">{{ settings.bannerBreak.btnLabel }}</a>
             </div>
           </div>
         </div>
@@ -196,6 +206,16 @@ const heroImages = computed(() => {
 const currentHeroIndex = ref(0);
 let heroTimer: ReturnType<typeof setInterval> | undefined;
 
+const newArrivalsRef = ref<HTMLElement | null>(null);
+const bestSellerRef = ref<HTMLElement | null>(null);
+
+const scrollCarousel = (el: HTMLElement | null, direction: 'left' | 'right') => {
+  if (!el) return;
+  const scrollAmount = el.clientWidth / 2;
+  const currentScroll = el.scrollLeft;
+  el.scrollTo({ left: direction === 'left' ? currentScroll - scrollAmount : currentScroll + scrollAmount, behavior: 'smooth' });
+};
+
 const reviews = [
   { text: 'Chất vải dày dặn, form chuẩn, đúng như mô tả. Giao hàng nhanh, đóng gói cẩn thận.', name: 'Lan Nguyễn', role: 'Khách hàng thân thiết', avatar: 'L' },
   { text: 'Mẫu mã cập nhật liên tục, mặc lên rất chất. Đã mua 3 lần và đều ưng ý.', name: 'Hải Trần', role: 'Mua lần đầu', avatar: 'H' },
@@ -235,71 +255,21 @@ onUnmounted(() => {
 <style scoped>
 .preview-home-frame {
   width: 100%;
-  max-width: 640px;
-  margin: 0 auto;
+  max-width: none;
+  margin: 0;
 }
 
 .preview-home {
   background: #fff;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .preview-prod-row {
   padding-bottom: 20px;
 }
 
-.preview-prod-card {
-  width: 120px;
-}
-
-.banner-preview {
-  position: relative;
-  height: 180px;
-  border-radius: 12px;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: flex-end;
-}
-
-.banner-preview::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-}
-
-.banner-preview-content {
-  position: relative;
-  z-index: 1;
-  padding: 22px;
-  color: #fff;
-}
-
-.banner-preview-content h2 {
-  font-size: 22px;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  margin-bottom: 8px;
-}
-
-.banner-preview-content p {
-  font-size: 11px;
-  line-height: 1.5;
-  opacity: 0.95;
-  margin-bottom: 14px;
-  max-width: 260px;
-}
-
-.banner-preview-btn {
-  display: inline-block;
-  background: #fff;
-  color: #000;
-  text-transform: uppercase;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 9px 18px;
-}
+/* rely on home.css for product card sizing and banner styles */
 
 .review-list {
   display: flex;
@@ -409,5 +379,20 @@ onUnmounted(() => {
   font-size: 10px;
   color: #000;
   margin-top: 2px;
+}
+
+/* Preview tweaks to match homepage when rendered inside admin panel */
+.preview-home .hero-bg {
+  background-attachment: scroll !important;
+}
+
+.preview-home .hero-grid {
+  padding: 0 32px 72px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.preview-home .hero {
+  padding-top: 72px;
 }
 </style>

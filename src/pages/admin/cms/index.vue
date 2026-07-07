@@ -13,17 +13,7 @@
       <div v-if="isLoading" class="loading-panel">Đang tải dữ liệu...</div>
 
       <div v-else class="cms-grid">
-        <aside class="cms-index">
-          <div class="index-title">Trang Home Page</div>
-          <button class="index-item" :class="{ active: activeSection === 'hero' }" @click="setSection('hero')">Hero banner</button>
-          <button class="index-item" :class="{ active: activeSection === 'gender' }" @click="setSection('gender')">Danh mục nam/nữ</button>
-          <button class="index-item" :class="{ active: activeSection === 'newArrivals' }" @click="setSection('newArrivals')">Sản phẩm mới</button>
-          <button class="index-item" :class="{ active: activeSection === 'bestSeller' }" @click="setSection('bestSeller')">Best seller</button>
-          <button class="index-item" :class="{ active: activeSection === 'bannerBreak' }" @click="setSection('bannerBreak')">Banner giữa trang</button>
-          <button class="index-item" :class="{ active: activeSection === 'reviews' }" @click="setSection('reviews')">Đánh giá khách hàng</button>
-          <button class="index-item" :class="{ active: activeSection === 'about' }" @click="setSection('about')">Giới thiệu</button>
-          <button class="index-item" :class="{ active: activeSection === 'stats' }" @click="setSection('stats')">Thống kê</button>
-        </aside>
+        <!-- cms-index sidebar removed per request -->
 
         <section class="cms-editor">
           <section id="hero" class="cms-card">
@@ -441,13 +431,13 @@ onMounted(() => {
   overflow-y: auto;
   display: flex;
   justify-content: center;
-  padding: 32px 24px;
+  padding: 10px 12px;
   background: #fafafa;
 }
 
 .preview-pane {
   width: 100%;
-  max-width: 720px;
+  max-width: none;
 }
 
 .mock-home-page {
@@ -463,7 +453,7 @@ onMounted(() => {
 
 .cms-grid {
   display: grid;
-  grid-template-columns: 220px 360px minmax(0, 1fr);
+  grid-template-columns: 360px minmax(0, 1fr);
   gap: 18px;
   min-height: 0;
   flex: 1;
@@ -505,6 +495,14 @@ onMounted(() => {
 .index-item:hover {
   background: rgba(122, 14, 22, 0.08);
   color: #7A0E16;
+}
+
+.preview-home-frame {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  /* transform: scale(0.7); */
+  transform-origin: top center;
 }
 
 .cms-editor {
@@ -625,7 +623,7 @@ input[type="text"], input[type="number"], textarea, select {
 
 @media (max-width: 1280px) {
   .cms-grid {
-    grid-template-columns: 220px minmax(0, 360px);
+    grid-template-columns: minmax(0, 360px);
   }
 
   .cms-preview {
