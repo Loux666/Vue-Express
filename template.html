@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMS · Quản lý trang chủ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bebas+Neue&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --red: #7A0E16;
+            --r4: rgba(122, 14, 22, 0.04);
+            --r6: rgba(122, 14, 22, 0.06);
+            --r10: rgba(122, 14, 22, 0.10);
+            --r15: rgba(122, 14, 22, 0.15);
+            --ink: #1A1A1A;
+            --muted: #8A8A8A;
+            --line: #ECECEC;
+            --surface: #FAFAFA;
+            --bg: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: var(--surface);
+            color: var(--ink);
+        }
+
+        /* ===== Topbar ===== */
+        .topbar {
+            height: 56px;
+            background: var(--bg);
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+        }
+
+        .topbar .title {
+            font-size: 14.5px;
+            font-weight: 700;
+        }
+
+        .topbar .title span {
+            color: var(--red);
+        }
+
+        .topbar .actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .btn-outline {
+            background: var(--bg);
+            color: var(--ink);
+            border: 1px solid var(--line);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-save {
+            background: var(--red);
+            color: #fff;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .btn-save:hover {
+            opacity: .9;
+        }
+
+        /* ===== App layout: sidebar | form | preview ===== */
+        .app {
+            display: flex;
+            height: calc(100vh - 56px);
+        }
+
+        .sidebar {
+            width: 230px;
+            flex-shrink: 0;
+            background: var(--bg);
+            border-right: 1px solid var(--line);
+            padding: 18px 12px;
+            overflow-y: auto;
+        }
+
+        .sidebar-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            padding: 0 10px 10px;
+        }
+
+        .nav-item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-align: left;
+            background: transparent;
+            border: none;
+            padding: 11px 10px;
+            border-radius: 9px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #555;
+            cursor: pointer;
+            margin-bottom: 2px;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item .num {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--muted);
+            width: 20px;
+            flex-shrink: 0;
+        }
+
+        .nav-item:hover {
+            background: var(--surface);
+        }
+
+        .nav-item.active {
+            background: var(--r6);
+            color: var(--red);
+            border-left-color: var(--red);
+        }
+
+        .nav-item.active .num {
+            color: var(--red);
+        }
+
+        .editor {
+            width: 400px;
+            flex-shrink: 0;
+            background: var(--bg);
+            border-right: 1px solid var(--line);
+            overflow-y: auto;
+            padding: 22px 22px 60px;
+        }
+
+        .form-pane {
+            display: none;
+        }
+
+        .form-pane.active {
+            display: block;
+        }
+
+        .pane-head {
+            margin-bottom: 18px;
+        }
+
+        .pane-head h2 {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .pane-head p {
+            font-size: 12.5px;
+            color: var(--muted);
+            margin-top: 3px;
+        }
+
+        .group {
+            margin-bottom: 20px;
+        }
+
+        .group-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            margin-bottom: 10px;
+            padding-bottom: 7px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .field {
+            margin-bottom: 12px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #444;
+        }
+
+        .field input,
+        .field textarea {
+            width: 100%;
+            padding: 9px 11px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            font-size: 13px;
+            background: var(--surface);
+            color: var(--ink);
+            outline: none;
+            transition: border-color .15s;
+        }
+
+        .field input:focus,
+        .field textarea:focus {
+            border-color: var(--red);
+            background: var(--bg);
+        }
+
+        .field textarea {
+            resize: vertical;
+            min-height: 56px;
+        }
+
+        .row2 {
+            display: flex;
+            gap: 10px;
+        }
+
+        .row2 .field {
+            flex: 1;
+        }
+
+        .row3 {
+            display: flex;
+            gap: 8px;
+        }
+
+        .row3 .field {
+            flex: 1;
+        }
+
+        .hint {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 6px;
+        }
+
+        /* accordion list rows (products / reviews) */
+        .list-row {
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .list-row-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            cursor: pointer;
+            background: var(--surface);
+        }
+
+        .list-row-head img {
+            width: 34px;
+            height: 34px;
+            border-radius: 6px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .list-row-head .info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .list-row-head .info .n {
+            font-size: 12.5px;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .list-row-head .info .c {
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .list-row-head .chev {
+            font-size: 12px;
+            color: var(--muted);
+            transition: transform .15s;
+        }
+
+        .list-row.open .chev {
+            transform: rotate(180deg);
+        }
+
+        .list-row-body {
+            display: none;
+            padding: 14px 12px 4px;
+            border-top: 1px solid var(--line);
+        }
+
+        .list-row.open .list-row-body {
+            display: block;
+        }
+
+        /* ===== Preview panel ===== */
+        .preview {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .preview-topbar {
+            height: 44px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            font-size: 12.5px;
+            color: var(--muted);
+            border-bottom: 1px solid var(--line);
+            background: var(--bg);
+        }
+
+        .preview-topbar b {
+            color: var(--ink);
+            margin-left: 5px;
+        }
+
+        .preview-body {
+            flex: 1;
+            overflow: auto;
+            display: flex;
+            justify-content: center;
+            padding: 32px 24px;
+            background: var(--surface);
+        }
+
+        .preview-pane {
+            display: none;
+            width: 100%;
+            max-width: 640px;
+        }
+
+        .preview-pane.active {
+            display: block;
+        }
+
+        /* ===== Mock components (scaled-down real homepage styles) ===== */
+        .mock-frame {
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 2px 24px rgba(0, 0, 0, .06);
+        }
+
+        /* Hero */
+        .mock-hero {
+            position: relative;
+            height: 340px;
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+
+        .mock-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, .35);
+        }
+
+        .mock-hero-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 28px 32px;
+        }
+
+        .mock-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, .2);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .06em;
+            padding: 5px 12px;
+            border-radius: 999px;
+            margin-bottom: 14px;
+            width: fit-content;
+        }
+
+        .mock-eyebrow::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #fff;
+        }
+
+        .mock-hero-title {
+            font-size: 34px;
+            font-weight: 800;
+            color: #fff;
+            line-height: .98;
+            margin-bottom: 12px;
+        }
+
+        .mock-hero-sub {
+            font-size: 12px;
+            color: rgba(255, 255, 255, .9);
+            max-width: 220px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .mock-hero-cta {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .mock-btn {
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 10px 18px;
+            border-radius: 999px;
+        }
+
+        .mock-btn-primary {
+            background: var(--red);
+            color: #fff;
+        }
+
+        .mock-btn-ghost {
+            background: transparent;
+            color: #fff;
+            padding: 10px 4px;
+        }
+
+        .mock-marquee {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--red);
+            color: #fff;
+            font-size: 11px;
+            letter-spacing: .05em;
+            padding: 8px 16px;
+            white-space: nowrap;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        /* Section head */
+        .mock-sec-head {
+            padding: 20px 4px 14px;
+        }
+
+        .mock-sec-eyebrow {
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: .06em;
+            color: #000;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .mock-sec-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #000;
+        }
+
+        /* Gender split */
+        .mock-gender-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding: 0 4px 20px;
+        }
+
+        .mock-gender-card {
+            position: relative;
+            height: 180px;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            padding: 16px;
+        }
+
+        .mock-gender-card img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .mock-gender-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, .3);
+            z-index: 2;
+        }
+
+        .mock-gender-card .c {
+            position: relative;
+            z-index: 3;
+        }
+
+        .mock-gender-card h3 {
+            font-size: 17px;
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .mock-gender-btn {
+            display: inline-block;
+            background: #fff;
+            color: #000;
+            font-size: 10.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 7px 14px;
+        }
+
+        /* Product cards */
+        .mock-prod-row {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding: 0 4px 20px;
+        }
+
+        .mock-prod-card {
+            width: 120px;
+            flex-shrink: 0;
+            background: #fff;
+            border-radius: 14px;
+            padding: 8px;
+            box-shadow: 0 2px 10px var(--r6);
+        }
+
+        .mock-prod-img {
+            position: relative;
+            aspect-ratio: 1/1;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .mock-prod-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .mock-prod-badge {
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            background: #fff;
+            color: var(--red);
+            font-size: 8.5px;
+            font-weight: 700;
+            padding: 3px 7px;
+            border-radius: 999px;
+        }
+
+        .mock-prod-badge.sale {
+            background: var(--red);
+            color: #fff;
+        }
+
+        .mock-prod-cat {
+            font-size: 8.5px;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            color: #000;
+            margin-bottom: 2px;
+        }
+
+        .mock-prod-name {
+            font-size: 11px;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 5px;
+            line-height: 1.25;
+        }
+
+        .mock-prod-price {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+
+        .mock-prod-price .now {
+            font-size: 11px;
+            font-weight: 700;
+            color: #111;
+        }
+
+        .mock-prod-price .old {
+            font-size: 9.5px;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .mock-prod-price .disc {
+            font-size: 8.5px;
+            font-weight: 700;
+            color: #fff;
+            background: #e74c3c;
+            padding: 1px 4px;
+            border-radius: 3px;
+        }
+
+        /* Banner break */
+        .mock-banner {
+            position: relative;
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            margin: 0 4px 20px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .mock-banner::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, .35);
+        }
+
+        .mock-banner-content {
+            position: relative;
+            z-index: 2;
+            padding: 22px;
+            color: #fff;
+        }
+
+        .mock-banner-content h2 {
+            font-size: 22px;
+            text-transform: uppercase;
+            letter-spacing: .03em;
+            margin-bottom: 8px;
+        }
+
+        .mock-banner-content p {
+            font-size: 11px;
+            line-height: 1.5;
+            opacity: .95;
+            margin-bottom: 14px;
+            max-width: 260px;
+        }
+
+        .mock-btn-light {
+            display: inline-block;
+            background: #fff;
+            color: #000;
+            text-transform: uppercase;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 9px 18px;
+        }
+
+        /* Reviews */
+        .mock-review-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 0 4px 20px;
+        }
+
+        .mock-review-card {
+            background: linear-gradient(160deg, #fff, var(--r4));
+            border-radius: 14px;
+            padding: 16px;
+            box-shadow: 0 2px 12px var(--r6);
+        }
+
+        .mock-review-stars {
+            font-size: 11px;
+            color: var(--red);
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .mock-review-text {
+            font-size: 12px;
+            line-height: 1.6;
+            color: #000;
+            margin-bottom: 12px;
+        }
+
+        .mock-review-author {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mock-review-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--r15);
+            color: var(--red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 13px;
+        }
+
+        .mock-review-name {
+            font-size: 12px;
+            font-weight: 700;
+            color: #000;
+        }
+
+        .mock-review-role {
+            font-size: 10.5px;
+            color: #000;
+        }
+
+        /* About */
+        .mock-about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 200px;
+            margin: 0 4px 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .mock-about-img {
+            position: relative;
+        }
+
+        .mock-about-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .mock-about-text {
+            background: var(--red);
+            color: #fff;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .mock-about-text h2 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .mock-about-text p {
+            font-size: 11px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, .88);
+        }
+
+        /* Stats */
+        .mock-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            text-align: center;
+            padding: 0 4px 20px;
+        }
+
+        .mock-stat-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 26px;
+            color: #000;
+        }
+
+        .mock-stat-lbl {
+            font-size: 10px;
+            color: #000;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="topbar">
+        <div class="title">CMS <span>·</span> Quản lý trang chủ</div>
+        <div class="actions">
+            <button class="btn-outline" onclick="alert('Xem trang thật (demo)')">Xem trang thật</button>
+            <button class="btn-save" onclick="alert('Đã lưu thay đổi (demo)')">Lưu thay đổi</button>
+        </div>
+    </div>
+
+    <div class="app">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-label">Các section</div>
+            <nav id="nav">
+                <button class="nav-item active" data-target="hero"><span class="num">01</span>Hero Banner</button>
+                <button class="nav-item" data-target="gender"><span class="num">02</span>Danh mục Nam / Nữ</button>
+                <button class="nav-item" data-target="newArrivals"><span class="num">03</span>Sản phẩm mới</button>
+                <button class="nav-item" data-target="bestSeller"><span class="num">04</span>Best Seller</button>
+                <button class="nav-item" data-target="bannerBreak"><span class="num">05</span>Banner giữa trang</button>
+                <button class="nav-item" data-target="reviews"><span class="num">06</span>Đánh giá khách hàng</button>
+                <button class="nav-item" data-target="about"><span class="num">07</span>Giới thiệu</button>
+                <button class="nav-item" data-target="stats"><span class="num">08</span>Thống kê</button>
+            </nav>
+        </aside>
+
+        <!-- FORM -->
+        <main class="editor" id="editor"></main>
+
+        <!-- PREVIEW -->
+        <section class="preview">
+            <div class="preview-topbar">Xem trước — <b id="preview-label">Hero Banner</b></div>
+            <div class="preview-body">
+                <div class="preview-pane active" id="preview-hero"></div>
+                <div class="preview-pane" id="preview-gender"></div>
+                <div class="preview-pane" id="preview-newArrivals"></div>
+                <div class="preview-pane" id="preview-bestSeller"></div>
+                <div class="preview-pane" id="preview-bannerBreak"></div>
+                <div class="preview-pane" id="preview-reviews"></div>
+                <div class="preview-pane" id="preview-about"></div>
+                <div class="preview-pane" id="preview-stats"></div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        /* ============ DATA ============ */
+        const data = {
+            hero: {
+                eyebrow: "Bộ sưu tập SS26",
+                titleLines: ["BÙNG", "DÁNG", "PHỐ."],
+                sub: "Streetwear cắt may chuẩn form, chất liệu dày dặn. Mặc đi đâu cũng nổi — không cần cố.",
+                cta1: "Mua ngay",
+                cta2: "Xem bộ sưu tập",
+                marquee: "NEW DROP MỖI THỨ 6 · FREESHIP TỪ 499K · HÀNG VỀ MỖI TUẦN · BẢO HÀNH ĐỔI SIZE",
+                bgImage: "https://picsum.photos/900/600?random=101"
+            },
+            genderLabel: "Nam / Nữ",
+            gender: {
+                men: { title: "Thời trang Nam", img: "https://picsum.photos/400/500?random=102" },
+                women: { title: "Thời trang Nữ", img: "https://picsum.photos/400/500?random=103" },
+                btnLabel: "Mua ngay"
+            },
+            newArrivals: [
+                { cat: "Áo thun", name: "Áo thun Oversized Core", now: "414.000đ", old: "610.000đ", discount: "-32%", badge: "Mới", img: "https://picsum.photos/300/300?random=104" },
+                { cat: "Hoodie", name: "Hoodie Zip Heavyweight", now: "346.000đ", old: "510.000đ", discount: "-32%", badge: "", img: "https://picsum.photos/300/300?random=105" },
+                { cat: "Quần dài", name: "Quần Cargo Utility", now: "685.000đ", old: "890.000đ", discount: "-23%", badge: "", img: "https://picsum.photos/300/300?random=106" }
+            ],
+            bestSeller: [
+                { cat: "Quần đùi", name: "Quần Short Caro Trẻ Trung", now: "584.000đ", old: "730.000đ", discount: "-20%", badge: "TOP 1", img: "https://picsum.photos/300/300?random=107" },
+                { cat: "Sơ mi", name: "Sơ mi tay ngắn Cuban", now: "428.000đ", old: "670.000đ", discount: "-36%", badge: "", img: "https://picsum.photos/300/300?random=108" },
+                { cat: "Phụ kiện", name: "Mũ Lưỡi Trai Logo", now: "496.000đ", old: "690.000đ", discount: "-28%", badge: "Mới", img: "https://picsum.photos/300/300?random=109" }
+            ],
+            bannerBreak: {
+                heading: "Khám phá bản sắc riêng",
+                text: "Rya's Store mang đến những thiết kế thời trang táo bạo, giúp bạn tự tin thể hiện cá tính trong mọi khoảnh khắc.",
+                btnLabel: "Xem bộ sưu tập",
+                bgImage: "https://picsum.photos/900/500?random=110"
+            },
+            reviews: [
+                { text: "Chất vải dày dặn, form chuẩn, đúng như mô tả. Giao hàng nhanh, đóng gói cẩn thận.", name: "Lan Nguyễn", role: "Khách hàng thân thiết", avatar: "L" },
+                { text: "Mẫu mã cập nhật liên tục, mặc lên rất chất. Đã mua 3 lần và đều ưng ý.", name: "Hải Trần", role: "Mua lần đầu", avatar: "H" },
+                { text: "Dịch vụ tư vấn nhiệt tình, đổi size dễ dàng. Sẽ tiếp tục ủng hộ shop dài lâu.", name: "Thu Hà", role: "Khách VIP", avatar: "T" }
+            ],
+            about: {
+                heading: "VỀ RYA'S STORE",
+                text: "Rya's Store là thương hiệu streetwear Việt Nam, theo đuổi sự tối giản trong thiết kế và chất lượng trong từng đường may.",
+                img: "https://picsum.photos/500/500?random=111"
+            },
+            stats: [
+                { num: "12K+", label: "Khách hàng hài lòng" },
+                { num: "500+", label: "Sản phẩm đa dạng" },
+                { num: "86", label: "Cửa hàng đối tác" },
+                { num: "99%", label: "Đánh giá 5 sao" }
+            ]
+        };
+
+        const sectionLabels = {
+            hero: "Hero Banner", gender: "Danh mục Nam / Nữ", newArrivals: "Sản phẩm mới",
+            bestSeller: "Best Seller", bannerBreak: "Banner giữa trang", reviews: "Đánh giá khách hàng",
+            about: "Giới thiệu", stats: "Thống kê"
+        };
+
+        /* ============ helpers ============ */
+        function getPath(obj, path) { return path.split('.').reduce((o, k) => o?.[k], obj); }
+        function setPath(obj, path, value) {
+            const keys = path.split('.');
+            let cur = obj;
+            for (let i = 0; i < keys.length - 1; i++) cur = cur[keys[i]];
+            cur[keys[keys.length - 1]] = value;
+        }
+        function esc(s) { return (s || '').replace(/</g, '&lt;'); }
+
+        /* ============ FORM RENDERERS ============ */
+        function formHero() {
+            const h = data.hero;
+            return `
+    <div class="pane-head"><h2>Hero Banner</h2><p>Banner lớn đầu trang chủ</p></div>
+    <div class="group">
+      <div class="group-title">Nội dung</div>
+      <div class="field"><label>Nhãn nhỏ (eyebrow)</label>
+        <input data-bind="hero.eyebrow" value="${esc(h.eyebrow)}"></div>
+      <div class="field"><label>Tiêu đề (mỗi dòng 1 ý)</label>
+        <textarea data-bind="hero.titleLines" data-type="lines">${h.titleLines.join('\n')}</textarea></div>
+      <div class="field"><label>Mô tả ngắn</label>
+        <textarea data-bind="hero.sub">${esc(h.sub)}</textarea></div>
+      <div class="row2">
+        <div class="field"><label>Nút chính</label><input data-bind="hero.cta1" value="${esc(h.cta1)}"></div>
+        <div class="field"><label>Nút phụ</label><input data-bind="hero.cta2" value="${esc(h.cta2)}"></div>
+      </div>
+      <div class="field"><label>Chữ chạy (marquee)</label>
+        <input data-bind="hero.marquee" value="${esc(h.marquee)}"></div>
+      <div class="field"><label>Ảnh nền</label>
+        <input data-bind="hero.bgImage" value="${esc(h.bgImage)}"></div>
+    </div>
+  `;
+        }
+
+        function formGender() {
+            const g = data.gender;
+            return `
+    <div class="pane-head"><h2>Danh mục Nam / Nữ</h2><p>2 thẻ dẫn vào danh mục theo giới tính</p></div>
+    <div class="group">
+      <div class="group-title">Thẻ Nam</div>
+      <div class="field"><label>Tiêu đề</label><input data-bind="gender.men.title" value="${esc(g.men.title)}"></div>
+      <div class="field"><label>Ảnh</label><input data-bind="gender.men.img" value="${esc(g.men.img)}"></div>
+    </div>
+    <div class="group">
+      <div class="group-title">Thẻ Nữ</div>
+      <div class="field"><label>Tiêu đề</label><input data-bind="gender.women.title" value="${esc(g.women.title)}"></div>
+      <div class="field"><label>Ảnh</label><input data-bind="gender.women.img" value="${esc(g.women.img)}"></div>
+    </div>
+    <div class="group">
+      <div class="field"><label>Nhãn nút</label><input data-bind="gender.btnLabel" value="${esc(g.btnLabel)}"></div>
+    </div>
+  `;
+        }
+
+        function productRow(item, idx, key) {
+            return `
+    <div class="list-row" onclick="toggleRow(this, event)">
+      <div class="list-row-head">
+        <img src="${item.img}">
+        <div class="info"><div class="n">${esc(item.name)}</div><div class="c">${esc(item.cat)} · ${item.now}</div></div>
+        <div class="chev">▾</div>
+      </div>
+      <div class="list-row-body" onclick="event.stopPropagation()">
+        <div class="field"><label>Tên sản phẩm</label><input data-bind="${key}.${idx}.name" value="${esc(item.name)}"></div>
+        <div class="row2">
+          <div class="field"><label>Danh mục</label><input data-bind="${key}.${idx}.cat" value="${esc(item.cat)}"></div>
+          <div class="field"><label>Badge</label><input data-bind="${key}.${idx}.badge" value="${esc(item.badge)}" placeholder="Mới / TOP 1..."></div>
+        </div>
+        <div class="row3">
+          <div class="field"><label>Giá bán</label><input data-bind="${key}.${idx}.now" value="${esc(item.now)}"></div>
+          <div class="field"><label>Giá gốc</label><input data-bind="${key}.${idx}.old" value="${esc(item.old)}"></div>
+          <div class="field"><label>Giảm</label><input data-bind="${key}.${idx}.discount" value="${esc(item.discount)}"></div>
+        </div>
+        <div class="field"><label>Ảnh sản phẩm</label><input data-bind="${key}.${idx}.img" value="${esc(item.img)}"></div>
+      </div>
+    </div>
+  `;
+        }
+
+        function formProductList(key, title, desc) {
+            const items = data[key];
+            return `
+    <div class="pane-head"><h2>${title}</h2><p>${desc}</p></div>
+    <div class="group">
+      <div class="group-title">Danh sách sản phẩm (${items.length})</div>
+      ${items.map((it, i) => productRow(it, i, key)).join('')}
+      <div class="hint">Bấm vào một sản phẩm để sửa chi tiết.</div>
+    </div>
+  `;
+        }
+
+        function formBannerBreak() {
+            const b = data.bannerBreak;
+            return `
+    <div class="pane-head"><h2>Banner giữa trang</h2><p>Banner full-width chèn giữa các section</p></div>
+    <div class="group">
+      <div class="field"><label>Tiêu đề</label><input data-bind="bannerBreak.heading" value="${esc(b.heading)}"></div>
+      <div class="field"><label>Nội dung</label><textarea data-bind="bannerBreak.text">${esc(b.text)}</textarea></div>
+      <div class="field"><label>Nhãn nút</label><input data-bind="bannerBreak.btnLabel" value="${esc(b.btnLabel)}"></div>
+      <div class="field"><label>Ảnh nền</label><input data-bind="bannerBreak.bgImage" value="${esc(b.bgImage)}"></div>
+    </div>
+  `;
+        }
+
+        function reviewRow(item, idx) {
+            return `
+    <div class="list-row" onclick="toggleRow(this, event)">
+      <div class="list-row-head">
+        <div class="info"><div class="n">${esc(item.name)}</div><div class="c">${esc(item.role)}</div></div>
+        <div class="chev">▾</div>
+      </div>
+      <div class="list-row-body" onclick="event.stopPropagation()">
+        <div class="field"><label>Nội dung đánh giá</label><textarea data-bind="reviews.${idx}.text">${esc(item.text)}</textarea></div>
+        <div class="row2">
+          <div class="field"><label>Tên khách hàng</label><input data-bind="reviews.${idx}.name" value="${esc(item.name)}"></div>
+          <div class="field"><label>Vai trò</label><input data-bind="reviews.${idx}.role" value="${esc(item.role)}"></div>
+        </div>
+        <div class="field"><label>Chữ cái avatar</label><input data-bind="reviews.${idx}.avatar" maxlength="1" value="${esc(item.avatar)}"></div>
+      </div>
+    </div>
+  `;
+        }
+
+        function formReviews() {
+            return `
+    <div class="pane-head"><h2>Đánh giá khách hàng</h2><p>Testimonial hiển thị cuối trang</p></div>
+    <div class="group">
+      <div class="group-title">Danh sách đánh giá (${data.reviews.length})</div>
+      ${data.reviews.map((it, i) => reviewRow(it, i)).join('')}
+    </div>
+  `;
+        }
+
+        function formAbout() {
+            const a = data.about;
+            return `
+    <div class="pane-head"><h2>Giới thiệu</h2><p>Section "Về chúng tôi"</p></div>
+    <div class="group">
+      <div class="field"><label>Tiêu đề</label><input data-bind="about.heading" value="${esc(a.heading)}"></div>
+      <div class="field"><label>Nội dung</label><textarea data-bind="about.text">${esc(a.text)}</textarea></div>
+      <div class="field"><label>Ảnh</label><input data-bind="about.img" value="${esc(a.img)}"></div>
+    </div>
+  `;
+        }
+
+        function formStats() {
+            return `
+    <div class="pane-head"><h2>Thống kê</h2><p>Dãy số liệu cuối trang</p></div>
+    <div class="group">
+      <div class="group-title">4 chỉ số</div>
+      ${data.stats.map((s, i) => `
+        <div class="row2">
+          <div class="field"><label>Số liệu ${i + 1}</label><input data-bind="stats.${i}.num" value="${esc(s.num)}"></div>
+          <div class="field"><label>Nhãn</label><input data-bind="stats.${i}.label" value="${esc(s.label)}"></div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+        }
+
+        const formRenderers = {
+            hero: formHero,
+            gender: formGender,
+            newArrivals: () => formProductList('newArrivals', 'Sản phẩm mới', 'Carousel hàng mới về'),
+            bestSeller: () => formProductList('bestSeller', 'Best Seller', 'Sản phẩm bán chạy nhất'),
+            bannerBreak: formBannerBreak,
+            reviews: formReviews,
+            about: formAbout,
+            stats: formStats
+        };
+
+        /* ============ PREVIEW RENDERERS ============ */
+        function previewHero() {
+            const h = data.hero;
+            document.getElementById('preview-hero').innerHTML = `
+    <div class="mock-frame">
+      <div class="mock-hero" style="background-image:url('${h.bgImage}')">
+        <div class="mock-hero-content">
+          <div class="mock-eyebrow">${esc(h.eyebrow)}</div>
+          <div class="mock-hero-title">${h.titleLines.map(l => esc(l)).join('<br>')}</div>
+          <div class="mock-hero-sub">${esc(h.sub)}</div>
+          <div class="mock-hero-cta">
+            <span class="mock-btn mock-btn-primary">${esc(h.cta1)}</span>
+            <span class="mock-btn mock-btn-ghost">${esc(h.cta2)} →</span>
+          </div>
+        </div>
+        <div class="mock-marquee"><span>${esc(h.marquee)}</span></div>
+      </div>
+    </div>
+  `;
+        }
+
+        function previewGender() {
+            const g = data.gender;
+            document.getElementById('preview-gender').innerHTML = `
+    <div class="mock-frame">
+      <div class="mock-sec-head"><div class="mock-sec-eyebrow">Bộ sưu tập nổi bật</div><div class="mock-sec-title">Trải nghiệm cửa hàng</div></div>
+      <div class="mock-gender-split">
+        <div class="mock-gender-card"><img src="${g.men.img}"><div class="c"><h3>${esc(g.men.title)}</h3><span class="mock-gender-btn">${esc(g.btnLabel)}</span></div></div>
+        <div class="mock-gender-card"><img src="${g.women.img}"><div class="c"><h3>${esc(g.women.title)}</h3><span class="mock-gender-btn">${esc(g.btnLabel)}</span></div></div>
+      </div>
+    </div>
+  `;
+        }
+
+        function productCard(item) {
+            return `
+    <div class="mock-prod-card">
+      <div class="mock-prod-img">
+        ${item.badge ? `<span class="mock-prod-badge${item.badge.includes('%') ? ' sale' : ''}">${esc(item.badge)}</span>` : ''}
+        <img src="${item.img}">
+      </div>
+      <div class="mock-prod-cat">${esc(item.cat)}</div>
+      <div class="mock-prod-name">${esc(item.name)}</div>
+      <div class="mock-prod-price">
+        <span class="now">${esc(item.now)}</span>
+        <span class="old">${esc(item.old)}</span>
+        <span class="disc">${esc(item.discount)}</span>
+      </div>
+    </div>
+  `;
+        }
+
+        function previewProductList(key, id, title, eyebrow) {
+            document.getElementById(id).innerHTML = `
+    <div class="mock-frame">
+      <div class="mock-sec-head"><div class="mock-sec-eyebrow">${esc(eyebrow)}</div><div class="mock-sec-title">${esc(title)}</div></div>
+      <div class="mock-prod-row">${data[key].map(productCard).join('')}</div>
+    </div>
+  `;
+        }
+
+        function previewBannerBreak() {
+            const b = data.bannerBreak;
+            document.getElementById('preview-bannerBreak').innerHTML = `
+    <div class="mock-frame" style="padding-top:20px;">
+      <div class="mock-banner" style="background-image:url('${b.bgImage}')">
+        <div class="mock-banner-content">
+          <h2>${esc(b.heading)}</h2>
+          <p>${esc(b.text)}</p>
+          <span class="mock-btn-light">${esc(b.btnLabel)}</span>
+        </div>
+      </div>
+    </div>
+  `;
+        }
+
+        function previewReviews() {
+            document.getElementById('preview-reviews').innerHTML = `
+    <div class="mock-frame">
+      <div class="mock-sec-head"><div class="mock-sec-title">Khách hàng nói gì</div></div>
+      <div class="mock-review-grid">
+        ${data.reviews.map(r => `
+          <div class="mock-review-card">
+            <div class="mock-review-stars">★★★★★</div>
+            <div class="mock-review-text">${esc(r.text)}</div>
+            <div class="mock-review-author">
+              <div class="mock-review-avatar">${esc(r.avatar)}</div>
+              <div><div class="mock-review-name">${esc(r.name)}</div><div class="mock-review-role">${esc(r.role)}</div></div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+        }
+
+        function previewAbout() {
+            const a = data.about;
+            document.getElementById('preview-about').innerHTML = `
+    <div class="mock-frame" style="padding-top:20px;">
+      <div class="mock-about">
+        <div class="mock-about-img"><img src="${a.img}"></div>
+        <div class="mock-about-text"><h2>${esc(a.heading)}</h2><p>${esc(a.text)}</p></div>
+      </div>
+    </div>
+  `;
+        }
+
+        function previewStats() {
+            document.getElementById('preview-stats').innerHTML = `
+    <div class="mock-frame">
+      <div class="mock-stats" style="padding-top:20px;">
+        ${data.stats.map(s => `<div><div class="mock-stat-num">${esc(s.num)}</div><div class="mock-stat-lbl">${esc(s.label)}</div></div>`).join('')}
+      </div>
+    </div>
+  `;
+        }
+
+        const previewRenderers = {
+            hero: previewHero,
+            gender: previewGender,
+            newArrivals: () => previewProductList('newArrivals', 'preview-newArrivals', 'Drop mới nhất', 'Hàng mới về'),
+            bestSeller: () => previewProductList('bestSeller', 'preview-bestSeller', 'Best Seller', 'Được yêu thích nhất'),
+            bannerBreak: previewBannerBreak,
+            reviews: previewReviews,
+            about: previewAbout,
+            stats: previewStats
+        };
+
+        /* ============ render all + wiring ============ */
+        function renderAll() {
+            Object.keys(previewRenderers).forEach(k => previewRenderers[k]());
+        }
+
+        function renderForm(section) {
+            document.getElementById('editor').innerHTML = formRenderers[section]();
+        }
+
+        function toggleRow(el) {
+            const wasOpen = el.classList.contains('open');
+            el.parentElement.querySelectorAll('.list-row').forEach(r => r.classList.remove('open'));
+            if (!wasOpen) el.classList.add('open');
+        }
+
+        function switchSection(section) {
+            document.querySelectorAll('.nav-item').forEach(b => b.classList.toggle('active', b.dataset.target === section));
+            document.querySelectorAll('.preview-pane').forEach(p => p.classList.toggle('active', p.id === 'preview-' + section));
+            document.getElementById('preview-label').textContent = sectionLabels[section];
+            renderForm(section);
+        }
+
+        document.getElementById('nav').addEventListener('click', (e) => {
+            const btn = e.target.closest('.nav-item');
+            if (!btn) return;
+            switchSection(btn.dataset.target);
+        });
+
+        document.getElementById('editor').addEventListener('input', (e) => {
+            const input = e.target.closest('[data-bind]');
+            if (!input) return;
+            const path = input.dataset.bind;
+            let value = input.value;
+            if (input.dataset.type === 'lines') value = value.split('\n').filter(l => l.length);
+            setPath(data, path, value);
+
+            // re-render only the affected preview section (derive top-level key from path)
+            const topKey = path.split('.')[0];
+            const sectionKey = topKey === 'gender' ? 'gender' : (topKey === 'newArrivals' ? 'newArrivals' : (topKey === 'bestSeller' ? 'bestSeller' : topKey));
+            if (previewRenderers[sectionKey]) previewRenderers[sectionKey]();
+
+            // if editing a product row, keep the list scroll position by not re-rendering the form
+            if (sectionKey === 'newArrivals' || sectionKey === 'bestSeller' || sectionKey === 'reviews') {
+                // update the row label live without collapsing the accordion
+                const row = input.closest('.list-row');
+                if (row) {
+                    const nameField = row.querySelector('.n');
+                    const catField = row.querySelector('.c');
+                    if (path.endsWith('.name') && nameField) nameField.textContent = value;
+                }
+            }
+        });
+
+        /* initial paint */
+        renderForm('hero');
+        renderAll();
+    </script>
+
+</body>
+
+</html>
