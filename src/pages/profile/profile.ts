@@ -22,13 +22,14 @@ export default defineComponent({
 
     const fullName = computed(() => authStore.user?.name || authStore.user?.username || 'Người dùng');
     const userEmail = computed(() => authStore.user?.email || '—');
-    const avatarUrl = computed(() => previewAvatar.value || getAvatarUrl(authStore.user?.avatar, 120));
-    const userRole = computed(() => authStore.user?.role || 'user');
-    const isActivated = computed(() => authStore.user?.is_activated === 1);
+    const avatarUrl = computed(() => previewAvatar.value || getAvatarUrl(authStore.user?.avatar || authStore.user?.avatar_url, 120));
+    const userRole = computed(() => String(authStore.user?.role || 'user').toLowerCase());
+    const isActivated = computed(() => authStore.user?.isActive ?? authStore.user?.is_active ?? false);
     const isEmailVerified = computed(() => !!authStore.user?.email_verified_at);
     const createdAt = computed(() => {
-      if (!authStore.user?.created_at) return '—';
-      const date = new Date(authStore.user.created_at);
+      const rawDate = authStore.user?.createdAt || authStore.user?.created_at;
+      if (!rawDate) return '—';
+      const date = new Date(rawDate);
       return date.toLocaleDateString('vi-VN', {
         year: 'numeric',
         month: 'long',

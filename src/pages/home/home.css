@@ -31,7 +31,7 @@
     h2,
     h3,
     .display {
-        font-family: 'Bebas Neue', sans-serif;
+        
         letter-spacing: 0.015em;
         line-height: 0.95;
         font-weight: 400;
@@ -203,9 +203,24 @@
     /* ===== Hero ===== */
     .hero {
         position: relative;
-        background: url('../../assets/banner/banner.avif') center/cover no-repeat fixed;
         padding: 72px 0 0;
         overflow: hidden;
+    }
+
+    .hero-bg {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        opacity: 0;
+        transition: opacity 1.5s ease-in-out;
+        z-index: 0;
+    }
+
+    .hero-bg.active {
+        opacity: 1;
     }
 
     .hero::before {
@@ -405,7 +420,7 @@
         display: inline-block;
         padding: 12px 0;
         animation: scroll-left 24s linear infinite;
-        font-family: 'Bebas Neue', sans-serif;
+        
         font-size: 15px;
         letter-spacing: 0.08em;
     }
@@ -1127,7 +1142,7 @@
         background: #fff;
         color: #000;
         text-transform: uppercase;
-        font-family: 'Bebas Neue', sans-serif;
+        
         font-size: 18px;
         letter-spacing: 0.05em;
         transition: transform 0.2s;
@@ -1339,7 +1354,7 @@
 
     .gender-card h3 {
         font-size: 56px;
-        font-family: 'Bebas Neue', sans-serif;
+        
         letter-spacing: 0.05em;
         margin-bottom: 16px;
         text-transform: uppercase;

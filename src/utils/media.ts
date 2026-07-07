@@ -1,5 +1,5 @@
 export function getImageUrl(path?: string | null, opts?: { default?: string; prefix?: string }) {
-  const def = opts?.default || 'https://via.placeholder.com/120?text=U';
+  const def = opts?.default || '/src/assets/avatar/default.jpg';
   if (!path) return def;
   if (/^https?:\/\//.test(path)) return path;
 
@@ -22,6 +22,5 @@ export function getImageUrl(path?: string | null, opts?: { default?: string; pre
 }
 
 export function getAvatarUrl(path?: string | null, size = 120) {
-  const placeholder = `https://via.placeholder.com/${size}?text=U`;
-  return getImageUrl(path, { default: placeholder });
+  return getImageUrl(path, { default: '/src/assets/avatar/default.jpg' });
 }

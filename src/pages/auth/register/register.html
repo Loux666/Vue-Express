@@ -1,12 +1,31 @@
-<div class="register-page">
-	<div class="register-container">
+<div class="auth-shell register-page">
+	<div class="auth-visual">
+		<div class="auth-visual__badge">New Account</div>
+		<h2>Tham gia để mở kho ưu đãi.</h2>
+		<p>
+			Tạo tài khoản để thanh toán nhanh hơn, theo dõi đơn hàng và lưu lại sản phẩm yêu thích.
+		</p>
+		<div class="auth-visual__stats">
+			<div>
+				<strong>03</strong>
+				<span>Bước để hoàn tất</span>
+			</div>
+			<div>
+				<strong>100%</strong>
+				<span>Sẵn sàng cho mua sắm</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="auth-card register-container">
 		<div class="logo-section">
 			<img src="/src/assets/logo/LOGO PAGE RYA.png" alt="Rya's Store" class="logo-image" />
+			<div class="eyebrow">Create Account</div>
 			<h1>Đăng ký</h1>
 			<p>Tạo tài khoản mới</p>
 		</div>
 
-		<form @submit.prevent="handleRegister">
+		<form @submit.prevent="handleRegister" class="auth-form">
 			<div class="form-group">
 				<label for="name">Họ và tên</label>
 				<input id="name" v-model="name" placeholder="Nguyễn Văn A" required />
@@ -15,6 +34,11 @@
 			<div class="form-group">
 				<label for="email">Email</label>
 				<input id="email" type="email" v-model="email" placeholder="example@gmail.com" required />
+			</div>
+
+			<div class="form-group">
+				<label for="phone">Số điện thoại</label>
+				<input id="phone" type="tel" v-model="phone" placeholder="0912345678" required />
 			</div>
 
 			<div class="form-group">
@@ -27,11 +51,15 @@
 					placeholder="Nhập lại password..." required />
 			</div>
 
-			<div v-if="errorMessage" class="error-msg" style="color: #ff4d4f; margin-bottom: 15px; font-size: 14px;">
+			<div v-if="errorMessage" class="error-msg">
 				{{ errorMessage }}
 			</div>
 
-			<button type="submit" class="btn-register">Đăng ký</button>
+			<div v-if="successMessage" class="success-msg">
+				{{ successMessage }}
+			</div>
+
+			<button type="submit" class="btn-register btn-primary">Đăng ký</button>
 		</form>
 		<div class="auth-links">
 			<span>Đã có tài khoản?</span>

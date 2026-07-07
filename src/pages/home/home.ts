@@ -1,16 +1,36 @@
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, onMounted, onUnmounted } from 'vue';
 
 export default defineComponent({
   name: 'HomePage',
   setup() {
     const carouselRef = ref<HTMLElement | null>(null);
 
+    // Hero Carousel
+    const heroImages = [
+      '/src/assets/banner/banner.avif',
+      '/src/assets/banner/banner1.avif',
+      '/src/assets/banner/banner2.avif',
+
+    ];
+    const currentHeroIndex = ref(0);
+    let heroTimer: ReturnType<typeof setInterval>;
+
+    onMounted(() => {
+      heroTimer = setInterval(() => {
+        currentHeroIndex.value = (currentHeroIndex.value + 1) % heroImages.length;
+      }, 5000);
+    });
+
+    onUnmounted(() => {
+      if (heroTimer) clearInterval(heroTimer);
+    });
+
     const scrollCarousel = (direction: 'left' | 'right') => {
       if (carouselRef.value) {
         // Cuộn một khoảng bằng nửa chiều rộng container
-        const scrollAmount = carouselRef.value.clientWidth / 2; 
+        const scrollAmount = carouselRef.value.clientWidth / 2;
         const currentScroll = carouselRef.value.scrollLeft;
-        
+
         carouselRef.value.scrollTo({
           left: direction === 'left' ? currentScroll - scrollAmount : currentScroll + scrollAmount,
           behavior: 'smooth'
@@ -54,7 +74,9 @@ export default defineComponent({
     return {
       carouselRef,
       scrollCarousel,
-      selectSize
+      selectSize,
+      heroImages,
+      currentHeroIndex
     };
   }
 });

@@ -38,6 +38,14 @@ export default defineComponent({
       }
     };
 
+    const loginWithGoogle = () => {
+      oauthError.value = 'Đăng nhập Google hiện chưa được kích hoạt.';
+    };
+
+    const loginWithFacebook = () => {
+      oauthError.value = 'Đăng nhập Facebook hiện chưa được kích hoạt.';
+    };
+
     // const loginWithGoogle = async () => {
     //   console.log('Login with Google');
     //   oauthError.value = '';
@@ -81,8 +89,8 @@ export default defineComponent({
       password,
       remember,
       handleLogin,
-      // loginWithGoogle,
-      // loginWithFacebook,
+      loginWithGoogle,
+      loginWithFacebook,
       isGoogleLoading,
       isFacebookLoading,
       oauthError

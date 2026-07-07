@@ -1,6 +1,7 @@
 <div class="home-page">
 
   <section class="hero">
+    <div class="hero-bg" v-for="(img, index) in heroImages" :key="index" :class="{ active: currentHeroIndex === index }" :style="{ backgroundImage: `url(${img})` }"></div>
     <div class="hero-grid">
       <div>
         <div class="hero-eyebrow">Bộ sưu tập SS26</div>
