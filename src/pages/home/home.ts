@@ -1,82 +1,84 @@
 import { defineComponent, ref, onMounted, onUnmounted } from 'vue';
+import HeroSection from '@/components/home/HeroSection.vue';
+import ProductCarousel from '@/components/home/ProductCarousel.vue';
+import BannerBreak from '@/components/home/BannerBreak.vue';
+import ReviewsSection from '@/components/home/ReviewsSection.vue';
+import AboutSection from '@/components/home/AboutSection.vue';
+import StatsGrid from '@/components/home/StatsGrid.vue';
 
 export default defineComponent({
   name: 'HomePage',
+  components: {
+    HeroSection,
+    ProductCarousel,
+    BannerBreak
+    ,ReviewsSection,
+    AboutSection,
+    StatsGrid
+  },
   setup() {
-    const carouselRef = ref<HTMLElement | null>(null);
-
-    // Hero Carousel
     const heroImages = [
       '/src/assets/banner/banner.avif',
       '/src/assets/banner/banner1.avif',
-      '/src/assets/banner/banner2.avif',
-
+      '/src/assets/banner/banner2.avif'
     ];
-    const currentHeroIndex = ref(0);
-    let heroTimer: ReturnType<typeof setInterval>;
 
-    onMounted(() => {
-      heroTimer = setInterval(() => {
-        currentHeroIndex.value = (currentHeroIndex.value + 1) % heroImages.length;
-      }, 5000);
-    });
+    const demoImages = [
+      'https://picsum.photos/400/500?random=2',
+      'https://picsum.photos/400/500?random=3',
+      'https://picsum.photos/400/500?random=4',
+      'https://picsum.photos/400/500?random=5',
+      'https://picsum.photos/400/500?random=6',
+      'https://picsum.photos/400/500?random=7',
+      'https://picsum.photos/400/500?random=8'
+    ];
 
-    onUnmounted(() => {
-      if (heroTimer) clearInterval(heroTimer);
-    });
-
-    const scrollCarousel = (direction: 'left' | 'right') => {
-      if (carouselRef.value) {
-        // Cuộn một khoảng bằng nửa chiều rộng container
-        const scrollAmount = carouselRef.value.clientWidth / 2;
-        const currentScroll = carouselRef.value.scrollLeft;
-
-        carouselRef.value.scrollTo({
-          left: direction === 'left' ? currentScroll - scrollAmount : currentScroll + scrollAmount,
-          behavior: 'smooth'
-        });
+    const pageSettings = {
+      hero: {
+        carouselImages: heroImages,
+        title: 'BÙNG<br>DÁNG<br>PHỐ.',
+        subtitle: 'Streetwear cắt may chuẩn form, chất liệu dày dặn. Mặc đi đâu cũng nổi — không cần cố.',
+        primaryBtnText: 'Mua ngay',
+        primaryBtnLink: '#new',
+        secondaryBtnText: 'Xem bộ sưu tập →',
+        secondaryBtnLink: '#cat'
+      },
+      gender: {
+        men: { img: '../../assets/product/men-clothes.webp', title: 'Thời trang Nam' },
+        women: { img: '../../assets/product/women-clothes.jpg', title: 'Thời trang Nữ' },
+        btnLabel: 'Mua ngay'
+      },
+      products: {
+        displayCount: 8,
+        demoImages
+      },
+      bannerBreak: {
+        heading: 'Khám phá bản sắc riêng',
+        text: "Rya's Store mang đến những thiết kế thời trang táo bạo, giúp bạn tự tin thể hiện cá tính.",
+        btnLabel: 'Xem bộ sưu tập',
+        bgImage: '/src/assets/banner/banner-break.avif'
       }
-    };
-
-    const selectSize = (event: Event, imageSrc: string) => {
-      const btn = event.currentTarget as HTMLElement;
-      const card = btn.closest('.prod-card');
-      if (card) {
-        // Cập nhật hình ảnh
-        const img = card.querySelector('.prod-cover') as HTMLImageElement;
-        if (img) img.src = imageSrc;
-
-        // Cập nhật trạng thái nút
-        const parent = btn.parentElement;
-        if (parent) {
-          parent.querySelectorAll('.size-btn').forEach(el => el.classList.remove('active'));
-        }
-        btn.classList.add('active');
-
-        // Cập nhật giá
-        const nowPriceEl = card.querySelector('.prod-price .now');
-        const oldPriceEl = card.querySelector('.prod-price .old');
-        const discountEl = card.querySelector('.prod-price .discount');
-        if (nowPriceEl && oldPriceEl && discountEl) {
-          // Fake random price cho giao diện demo
-          const newNow = Math.floor(Math.random() * 500) * 1000 + 150000;
-          // Random mức giảm giá từ 10% đến 50%
-          const discountPercent = Math.floor(Math.random() * 41) + 10;
-          const newOld = Math.floor(newNow / (1 - discountPercent / 100));
-
-          nowPriceEl.textContent = new Intl.NumberFormat('vi-VN').format(newNow) + 'đ';
-          oldPriceEl.textContent = new Intl.NumberFormat('vi-VN').format(newOld) + 'đ';
-          discountEl.textContent = `-${discountPercent}%`;
-        }
-      }
+      ,
+      reviews: [
+        { text: 'Chất vải dày dặn, form chuẩn, đúng như mô tả. Giao hàng nhanh, đóng gói cẩn thận.', name: 'Lan Nguyễn', role: 'Khách hàng thân thiết', avatar: 'L' },
+        { text: 'Mẫu mã cập nhật liên tục, mặc lên rất chất. Đã mua 3 lần và đều ưng ý.', name: 'Hải Trần', role: 'Mua lần đầu', avatar: 'H' },
+        { text: 'Dịch vụ tư vấn nhiệt tình, đổi size dễ dàng. Sẽ tiếp tục ủng hộ shop dài lâu.', name: 'Thu Hà', role: 'Khách VIP', avatar: 'T' }
+      ],
+      about: {
+        image: '/src/assets/product/about.jpg',
+        heading: 'VỀ Rya\'s Store',
+        text: "Rya's Store là thương hiệu streetwear Việt Nam, theo đuổi sự tối giản trong thiết kế và chất lượng trong từng đường may."
+      },
+      stats: [
+        { num: '12K+', label: 'Khách hàng hài lòng' },
+        { num: '500+', label: 'Sản phẩm đa dạng' },
+        { num: '86', label: 'Cửa hàng đối tác' },
+        { num: '99%', label: 'Đánh giá 5 sao' }
+      ]
     };
 
     return {
-      carouselRef,
-      scrollCarousel,
-      selectSize,
-      heroImages,
-      currentHeroIndex
+      pageSettings
     };
   }
 });

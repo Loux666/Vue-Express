@@ -1,32 +1,7 @@
 <template>
   <div class="preview-home-frame">
     <div class="home-page preview-home">
-      <section id="preview-hero" class="hero">
-        <div
-          v-for="(img, index) in heroImages"
-          :key="index"
-          class="hero-bg"
-          :class="{ active: currentHeroIndex === index }"
-          :style="{ backgroundImage: 'url(' + img + ')' }"
-        ></div>
-        <div class="hero-grid">
-          <div>
-            <div class="hero-eyebrow">Bộ sưu tập SS26</div>
-            <h1 class="hero-title" v-html="settings.hero.title"></h1>
-            <p class="hero-sub">{{ settings.hero.subtitle }}</p>
-            <div class="hero-cta">
-              <a class="btn btn-primary" :href="settings.hero.primaryBtnLink">{{ settings.hero.primaryBtnText }}</a>
-              <a class="btn btn-ghost" :href="settings.hero.secondaryBtnLink">{{ settings.hero.secondaryBtnText }}</a>
-            </div>
-          </div>
-        </div>
-        <div class="hero-marquee">
-          <div class="hero-marquee-track">
-            <span>NEW DROP MỖI THỨ 6</span><span>FREESHIP TỪ 499K</span><span>HÀNG VỀ MỖI TUẦN</span><span>BẢO HÀNH ĐỔI SIZE</span>
-            <span>NEW DROP MỖI THỨ 6</span><span>FREESHIP TỪ 499K</span><span>HÀNG VỀ MỖI TUẦN</span><span>BẢO HÀNH ĐỔI SIZE</span>
-          </div>
-        </div>
-      </section>
+      <HeroSection :settings="settings" />
 
       <section id="preview-gender" class="section section-soft">
         <div class="wrap">
@@ -63,32 +38,7 @@
               <h2 class="sec-title">Drop mới nhất</h2>
             </div>
           </div>
-          <div class="carousel-wrap">
-            <button class="carousel-btn prev" @click="scrollCarousel(newArrivalsRef, 'left')">&larr;</button>
-            <button class="carousel-btn next" @click="scrollCarousel(newArrivalsRef, 'right')">&rarr;</button>
-
-            <div class="prod-carousel" ref="newArrivalsRef">
-              <div v-for="n in settings.products.displayCount" :key="'new-' + n" class="prod-card">
-                <div class="prod-img">
-                  <span class="prod-badge">Mới</span>
-                  <img :src="getDemoImage(n)" alt="Product" class="prod-cover" />
-                  <div class="prod-quickadd">Thêm vào giỏ</div>
-                </div>
-                <div class="prod-cat">Áo thun</div>
-                <div class="prod-name">Sản phẩm Demo {{ n }}</div>
-                <div class="prod-sizes">
-                  <span class="size-btn active">S</span>
-                  <span class="size-btn">M</span>
-                  <span class="size-btn">L</span>
-                </div>
-                <div class="prod-price">
-                  <span class="now">450.000đ</span>
-                  <span class="old">610.000đ</span>
-                  <span class="discount">-20%</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <ProductCarousel :demoImages="settings.products.demoImages" :displayCount="settings.products.displayCount" />
         </div>
       </section>
 
@@ -100,154 +50,38 @@
               <h2 class="sec-title">Best Seller</h2>
             </div>
           </div>
-            <div class="carousel-wrap">
-            <button class="carousel-btn prev" @click="scrollCarousel(bestSellerRef, 'left')">&larr;</button>
-            <button class="carousel-btn next" @click="scrollCarousel(bestSellerRef, 'right')">&rarr;</button>
-
-            <div class="prod-carousel" ref="bestSellerRef">
-              <div v-for="n in Math.min(settings.products.displayCount, 6)" :key="'best-' + n" class="prod-card">
-                <div class="prod-img">
-                  <span class="prod-badge sale">-20%</span>
-                  <img :src="getDemoImage(n + 1)" alt="Product" class="prod-cover" />
-                  <div class="prod-quickadd">Thêm vào giỏ</div>
-                </div>
-                <div class="prod-cat">Áo khoác</div>
-                <div class="prod-name">Best Seller {{ n }}</div>
-                <div class="prod-sizes">
-                  <span class="size-btn active">S</span>
-                  <span class="size-btn">M</span>
-                  <span class="size-btn">L</span>
-                </div>
-                <div class="prod-price">
-                  <span class="now">520.000đ</span>
-                  <span class="old">680.000đ</span>
-                  <span class="discount">-24%</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <ProductCarousel :demoImages="settings.products.demoImages" :displayCount="Math.min(settings.products.displayCount, 6)" />
         </div>
       </section>
 
       <section id="preview-bannerBreak" class="section section-soft">
         <div class="wrap">
-          <div class="banner-break" :style="{ backgroundImage: 'url(' + settings.bannerBreak.bgImage + ')' }">
-            <div class="banner-break-content">
-              <h2>{{ settings.bannerBreak.heading }}</h2>
-              <p>{{ settings.bannerBreak.text }}</p>
-              <a class="btn-light" href="#">{{ settings.bannerBreak.btnLabel }}</a>
-            </div>
-          </div>
+          <BannerBreak :banner="settings.bannerBreak" />
         </div>
       </section>
 
-      <section id="preview-reviews" class="section">
-        <div class="wrap">
-          <div class="sec-head">
-            <div>
-              <div class="sec-eyebrow">Khách hàng nói gì</div>
-              <h2 class="sec-title">Đánh giá khách hàng</h2>
-            </div>
-          </div>
-          <div class="review-list">
-            <article class="review-card" v-for="review in reviews" :key="review.name">
-              <div class="review-stars">★★★★★</div>
-              <p class="review-text">{{ review.text }}</p>
-              <div class="review-author">
-                <div class="review-avatar">{{ review.avatar }}</div>
-                <div>
-                  <div class="review-name">{{ review.name }}</div>
-                  <div class="review-role">{{ review.role }}</div>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
+      <ReviewsSection :reviews="settings.reviews" />
 
-      <section id="preview-about" class="section section-soft">
-        <div class="wrap">
-          <div class="about-grid">
-            <div class="about-img">
-              <img src="/src/assets/banner/banner-break.avif" alt="About Rya's Store" />
-            </div>
-            <div class="about-copy">
-              <h2>VỀ RYA'S STORE</h2>
-              <p>Rya's Store là thương hiệu streetwear Việt Nam, theo đuổi sự tối giản trong thiết kế và chất lượng trong từng đường may.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <AboutSection :about="settings.about" />
 
-      <section id="preview-stats" class="section">
-        <div class="wrap">
-          <div class="stats-grid">
-            <div class="stat-item" v-for="stat in stats" :key="stat.label">
-              <div class="stat-num">{{ stat.num }}</div>
-              <div class="stat-label">{{ stat.label }}</div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <StatsGrid :stats="settings.stats" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from 'vue';
+import HeroSection from '@/components/home/HeroSection.vue';
+import ProductCarousel from '@/components/home/ProductCarousel.vue';
+import BannerBreak from '@/components/home/BannerBreak.vue';
+import ReviewsSection from '@/components/home/ReviewsSection.vue';
+import AboutSection from '@/components/home/AboutSection.vue';
+import StatsGrid from '@/components/home/StatsGrid.vue';
 
 const props = defineProps<{ settings: any }>();
 
-const heroImages = computed(() => {
-  const images = props.settings?.hero?.carouselImages || [];
-  return images.filter((image: string) => image);
-});
+const settings = props.settings || {};
 
-const currentHeroIndex = ref(0);
-let heroTimer: ReturnType<typeof setInterval> | undefined;
-
-const newArrivalsRef = ref<HTMLElement | null>(null);
-const bestSellerRef = ref<HTMLElement | null>(null);
-
-const scrollCarousel = (el: HTMLElement | null, direction: 'left' | 'right') => {
-  if (!el) return;
-  const scrollAmount = el.clientWidth / 2;
-  const currentScroll = el.scrollLeft;
-  el.scrollTo({ left: direction === 'left' ? currentScroll - scrollAmount : currentScroll + scrollAmount, behavior: 'smooth' });
-};
-
-const reviews = [
-  { text: 'Chất vải dày dặn, form chuẩn, đúng như mô tả. Giao hàng nhanh, đóng gói cẩn thận.', name: 'Lan Nguyễn', role: 'Khách hàng thân thiết', avatar: 'L' },
-  { text: 'Mẫu mã cập nhật liên tục, mặc lên rất chất. Đã mua 3 lần và đều ưng ý.', name: 'Hải Trần', role: 'Mua lần đầu', avatar: 'H' },
-  { text: 'Dịch vụ tư vấn nhiệt tình, đổi size dễ dàng. Sẽ tiếp tục ủng hộ shop dài lâu.', name: 'Thu Hà', role: 'Khách VIP', avatar: 'T' }
-];
-
-const stats = [
-  { num: '12K+', label: 'Khách hàng hài lòng' },
-  { num: '500+', label: 'Sản phẩm đa dạng' },
-  { num: '86', label: 'Cửa hàng đối tác' },
-  { num: '99%', label: 'Đánh giá 5 sao' }
-];
-
-const getDemoImage = (index: number) => {
-  const images = props.settings?.products?.demoImages || [];
-  if (images.length === 0) {
-    return 'https://via.placeholder.com/400x500?text=No+Image';
-  }
-  return images[(index - 1) % images.length];
-};
-
-onMounted(() => {
-  if (heroImages.value.length > 1) {
-    heroTimer = setInterval(() => {
-      currentHeroIndex.value = (currentHeroIndex.value + 1) % heroImages.value.length;
-    }, 5000);
-  }
-});
-
-onUnmounted(() => {
-  if (heroTimer) clearInterval(heroTimer);
-});
+// Reviews and stats are provided from settings; components have defaults when missing.
 </script>
 
 <style src="../../pages/home/home.css"></style>
